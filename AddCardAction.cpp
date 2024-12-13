@@ -8,8 +8,14 @@
 #include "CardFour.h"
 #include "CardFive.h"
 #include "CardSix.h"
+#include "CardSeven.h"
 #include "CardEight.h"
 #include "CardNine.h"
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+
 AddCardAction::AddCardAction(ApplicationManager *pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -44,13 +50,20 @@ bool AddCardAction::ReadActionParameters()
 	// 4- Make the needed validations on the read parameters
 	if (number > 13 || number < 1)
 	{
-		pGrid->PrintErrorMessage("Error: in valid card number! Click to continue ...");
-		return false;
+		pGrid->PrintErrorMessage("Error: invalid card number ! Click to continue ...");
 		pManager->SetUpdateCond(false);
+		return false;
     }
+	if (!cardPosition.IsValidCell())
+	{
+		pOut->PrintMessage("Error: invalid cell ! Click to continue ...");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
 	cardNumber=number;
 	// 5- Clear status bar
 	pOut->ClearStatusBar();
+	return true;
 }
 
 void AddCardAction::Execute() 
@@ -92,27 +105,30 @@ void AddCardAction::Execute()
 		case 6:
 			pCard = new CardSix(cardPosition);
 			break;
-			//case 7:
-			//	pCard = new CardOne(cardPosition);
-			//	break;
+		case 7:
+				pCard = new CardSeven(cardPosition);
+			break;
 		case 8:
 			pCard = new CardEight(cardPosition);
 			break;
-			/*case 9:
+		/*case 9:
 				pCard = new CardNine(cardPosition);
-				break;*/
-				//case 10:
-				//	pCard = new CardOne(cardPosition);
-				//	break;
-				//case 11:
-				//	pCard = new CardOne(cardPosition);
-				//	break;
-				//case 12:
-				//	pCard = new CardOne(cardPosition);
-				//	break;
-				//case 13:
-				//	pCard = new CardOne(cardPosition);
-					//break;
+			break;*/
+		case 10:
+					pCard = new CardTen(cardPosition);
+			break;
+
+		case 11:
+					pCard = new CardEleven(cardPosition);
+		break;
+
+		case 12:
+					pCard = new CardTwelve(cardPosition);
+		   break;
+
+		case 13:
+					pCard = new CardThirteen(cardPosition);
+		   break;
 					// A- Add the remaining cases
 
 		}

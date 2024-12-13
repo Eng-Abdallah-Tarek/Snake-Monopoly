@@ -10,7 +10,7 @@ CopyCardAction::~CopyCardAction()
 {
 
 }
-void CopyCardAction::ReadActionParameters()
+bool CopyCardAction::ReadActionParameters()
 {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
@@ -24,19 +24,23 @@ void CopyCardAction::ReadActionParameters()
 	 if (!(c->HasCard()))
 	 {
 		 pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to copy ! Click to continue ...");
-		 return;
+		 pManager->SetUpdateCond(false);
+		 return false;
 	 }
 	 ptr = c->HasCard();
-	
+	 if (ptr)
+	 {
+		 return false;
+	 }
 	 pOut->ClearStatusBar();
+	 return true;
 }
 void CopyCardAction::Execute()
 {
-	ReadActionParameters();
-	Grid* pGrid = pManager->GetGrid();
-	if (ptr)
+	if (ReadActionParameters())
 	{
+		Grid* pGrid = pManager->GetGrid();
 		pGrid->SetClipboard(ptr);
 	}
-	return;
+	
 }

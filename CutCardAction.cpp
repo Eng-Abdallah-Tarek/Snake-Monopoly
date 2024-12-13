@@ -12,7 +12,7 @@ CutCardAction::~CutCardAction()
 {
 
 }
-void CutCardAction::ReadActionParameters()
+bool CutCardAction::ReadActionParameters()
 {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
@@ -26,20 +26,24 @@ void CutCardAction::ReadActionParameters()
 	if (!(c->HasCard()))
 	{
 		pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to cut ! Click to continue ...");
-		return;
+		pManager->SetUpdateCond(false);
+		return false;
 	}
 	 ptr = c->HasCard();
-	
-	pOut->ClearStatusBar();
+	 if (ptr)
+	 {
+		 return false;
+	 }
+	 pOut->ClearStatusBar();
+	 return true;
 }
 void CutCardAction::Execute()
 {
-	ReadActionParameters();
-	Grid* pGrid = pManager->GetGrid();
-	if (ptr)
+	if (ReadActionParameters())
 	{
+		Grid* pGrid = pManager->GetGrid();
 		pGrid->SetClipboard(NULL);
 		pGrid->RemoveObjectFromCell(cellpos);
 	}
-	return;
+	
 }
