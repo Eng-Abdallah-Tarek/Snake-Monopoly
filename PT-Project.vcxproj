@@ -258,6 +258,7 @@
     <ClInclude Include="PasteCardAction.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RollDiceAction.h" />
+    <ClInclude Include="Snake.h" />
     <ClInclude Include="SwitchToPlayModeAction.h" />
     <ClInclude Include="SwitcToDesignModeAction.h" />
     <ClInclude Include="UI_Info.h" />

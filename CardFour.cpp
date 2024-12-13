@@ -6,9 +6,7 @@ CardFour::CardFour(const CellPosition& pos) : Card(pos) // set the cell position
 CardFour::~CardFour(void)
 {
 }
-void CardFour::ReadCardParameters()
-{
-}
+
 
 void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 {

@@ -27,11 +27,12 @@ void Card::Draw(Output* pOut) const
 
 }
 
-void Card::ReadCardParameters(Grid * pGrid)
+bool Card::ReadCardParameters(Grid * pGrid)
 {
+
 	// we should not make it pure virtual because some Cards doesn't have parameters
 	// and if we make it pure virtual, that will make those Cards abstract classes
-	
+	return true;
 }
 
 void Card::Apply(Grid* pGrid, Player* pPlayer) 

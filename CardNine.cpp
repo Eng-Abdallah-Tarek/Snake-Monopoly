@@ -13,7 +13,16 @@ bool CardNine::ReadCardParameters(Grid* pGrid)  //returns false in the case that
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	CellPosition InputedCell =pIn->GetCellClicked();
-		moveto = InputedCell;
+	if (! InputedCell.IsValidCell() )
+	{
+		pGrid->PrintErrorMessage("Error: Invalid Cell , Click to continue ....");
+		return false;
+	}
+	else 
+	{
+		moveto = InputedCell; 
+		return true;
+	}
 }
 CardNine::~CardNine()
 { }

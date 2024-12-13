@@ -7,9 +7,6 @@ CardThree::CardThree(const CellPosition& pos) : Card(pos) // set the cell positi
 CardThree::~CardThree(void)
 {
 }
-void CardThree::ReadCardParameters()
-{
-}
 
 void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 {

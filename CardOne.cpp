@@ -9,7 +9,7 @@ CardOne::~CardOne(void)
 }
 
 
-void CardOne::ReadCardParameters(Grid * pGrid)
+bool CardOne::ReadCardParameters(Grid * pGrid)
 {
 	
 	
@@ -36,6 +36,13 @@ void CardOne::ReadCardParameters(Grid * pGrid)
 	
 	// 3- Clear the status bar
 	pOut->ClearStatusBar();
+	if (walletAmount == -1)
+	{
+		pGrid->PrintErrorMessage("Error: Invalid input (Wallet amount) , Click to continue ....");
+		return false;
+	}
+	else
+	return true;
 }
 
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)

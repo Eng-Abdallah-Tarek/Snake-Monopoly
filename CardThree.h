@@ -14,7 +14,7 @@ class CardThree : public Card
 public:
 	CardThree(const CellPosition& pos); // A Constructor takes card position
 
-	virtual void ReadCardParameters(); // there is no parameters
+
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Moves the player forward to the start of the next ladder.
 
