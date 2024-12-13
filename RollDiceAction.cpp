@@ -17,29 +17,39 @@ bool RollDiceAction::ReadActionParameters()
 
 void RollDiceAction::Execute()
 {
-		
-	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
+	Grid* pGrid = pManager->GetGrid();
+	if (pGrid->GetEndGame()) {
+		pGrid->PrintErrorMessage("The player already won! Click anywhere to continue...");
+	}
+	else
+		///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
 
-	// == Here are some guideline steps (numbered below) to implement this function ==
+		// == Here are some guideline steps (numbered below) to implement this function ==
 
-	// 1- Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
-	
-	// -- If not ended, do the following --:
+		// 1- Check if the Game is ended (Use the GetEndGame() function of pGrid), if yes, make the appropriate action
 
-	// 2- Generate a random number from 1 to 6 --> This step is done for you
-	srand((int)time(NULL)); // time is for different seed each run
-	int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
+		// -- If not ended, do the following --:
 
-	// 3- Get the "current" player from pGrid
+		// 2- Generate a random number from 1 to 6 --> This step is done for you
+	{
+		srand((int)time(NULL)); // time is for different seed each run
+		int diceNumber = 1 + rand() % 6; // from 1 to 6 --> should change seed
 
-	// 4- Move the currentPlayer using function Move of class player
+		// 3- Get the "current" player from pGrid
 
-	// 5- Advance the current player number of pGrid
+		// 4- Move the currentPlayer using function Move of class player
+
+		// 5- Advance the current player number of pGrid
 
 
-	// NOTE: the above guidelines are the main ones but not a complete set (You may need to add more steps).
+		// NOTE: the above guidelines are the main ones but not a complete set (You may need to add more steps).
+		pGrid->PrintErrorMessage("DiceNumber: " + to_string(diceNumber) +
+			", Click anywhere to continue...");
 
+		pGrid->GetCurrentPlayer()->Move(pGrid, diceNumber);
+		pGrid->AdvanceCurrentPlayer();
+	}
 }
 
 RollDiceAction::~RollDiceAction()
