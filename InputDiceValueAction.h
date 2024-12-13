@@ -7,7 +7,7 @@ class InputDiceValueAction :
 public:
     InputDiceValueAction(ApplicationManager* pApp);
 
-    virtual void ReadActionParameters();
+    virtual bool ReadActionParameters();
 
     virtual void Execute();
 

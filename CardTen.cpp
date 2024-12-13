@@ -1,12 +1,21 @@
 #include "CardTen.h"
 
-CardTen::CardTen(const CellPosition& pos): Card(pos), Owner(0)
+Player* CardTen::Owner = 0;
+int CardTen::Fees = -1;
+int CardTen::Price = -1;
+
+CardTen::CardTen(const CellPosition& pos): Card(pos)
 {
 	cardNumber = 10;
 }
 
 CardTen::~CardTen()
 {
+}
+
+ void CardTen::RemoveOwner()
+{
+	Owner = 0;
 }
 
 bool CardTen::ReadCardParameters(Grid* pGrid)

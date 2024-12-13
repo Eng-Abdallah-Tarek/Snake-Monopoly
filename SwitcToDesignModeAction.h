@@ -5,7 +5,7 @@ class SwitcToDesignModeAction :
 {
 public:
     SwitcToDesignModeAction(ApplicationManager* pApp);
-    virtual void ReadActionParameters();
+    virtual bool ReadActionParameters();
     virtual void Execute();
     virtual ~SwitcToDesignModeAction();
 };

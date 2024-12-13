@@ -13,7 +13,7 @@ PasteCardAction::~PasteCardAction()
 {
 
 }
-void PasteCardAction::ReadActionParameters()
+bool PasteCardAction::ReadActionParameters()
 {
 	
 	Grid* pGrid = pManager->GetGrid();
@@ -28,23 +28,25 @@ void PasteCardAction::ReadActionParameters()
 	{
 
 		pGrid->PrintErrorMessage("Error: Cell already has an object !Click to continue ...");
-		return;
+		pManager->SetUpdateCond(false);
+		return false;
 	}
 
 	cellpos = c1;
+	if (!(cellpos.IsValidCell()))
+	{
+		return false;
+	}
 	pOut->ClearStatusBar();
+	return true;
 }
 void PasteCardAction::Execute()
 {
-	ReadActionParameters();
-	Grid* pGrid = pManager->GetGrid();
-	Card*cardpaste = pGrid->GetClipboard();
-
-	if (cellpos.IsValidCell())
+	if (ReadActionParameters())
 	{
-	
+		Grid* pGrid = pManager->GetGrid();
+		Card* cardpaste = pGrid->GetClipboard();
 		c->SetGameObject(cardpaste);
-
+		
 	}
-	return;
 }

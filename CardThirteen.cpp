@@ -1,13 +1,21 @@
 #include "CardThirteen.h"
+Player* CardThirteen::Owner = 0;
+int CardThirteen::Fees = -1;
+int CardThirteen::Price = -1;
 
 
-CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos), Owner(0)
+CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 13;
 }
 
 CardThirteen::~CardThirteen()
 {
+}
+
+void CardThirteen::RemoveOwner()
+{
+	Owner = 0;
 }
 
 bool CardThirteen::ReadCardParameters(Grid* pGrid)

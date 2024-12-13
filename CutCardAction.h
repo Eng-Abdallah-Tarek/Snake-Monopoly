@@ -8,7 +8,7 @@ class CutCardAction : public Action
 public:
 	CutCardAction(ApplicationManager* pApp); // A Constructor
 
-	virtual void ReadActionParameters(); // Reads AddCardAction action parameters (cardNumber, cardPosition)
+	virtual bool ReadActionParameters(); // Reads AddCardAction action parameters (cardNumber, cardPosition)
 
 	virtual void Execute(); // Creates a new Card Object of the specific Card Number
 	// and Reads the Parameters of This Card Number (if any)

@@ -1,13 +1,22 @@
 #include "CardEleven.h"
 
+Player* CardEleven::Owner = 0;
+int CardEleven::Fees = -1;
+int CardEleven::Price = -1;
 
-CardEleven::CardEleven(const CellPosition& pos) : Card(pos), Owner(0)
+
+CardEleven::CardEleven(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 11;
 }
 
 CardEleven::~CardEleven()
 {
+}
+
+void CardEleven::RemoveOwner()
+{
+	Owner = 0;
 }
 
 bool CardEleven::ReadCardParameters(Grid* pGrid)
