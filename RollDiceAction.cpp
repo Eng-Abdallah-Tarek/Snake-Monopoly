@@ -9,9 +9,10 @@ RollDiceAction::RollDiceAction(ApplicationManager *pApp) : Action(pApp)
 {
 }
 
-void RollDiceAction::ReadActionParameters()
+bool RollDiceAction::ReadActionParameters()
 {
 	// no parameters to read from user
+	return true;
 }
 
 void RollDiceAction::Execute()

@@ -1,8 +1,9 @@
-#include "ApplicationManager.h"
-
-#include "Grid.h"
-#include "AddLadderAction.h"
-#include "AddCardAction.h"
+#include"ApplicationManager.h"
+#include"Grid.h"
+#include"AddLadderAction.h"
+#include"AddCardAction.h"
+#include"AddSnakeAction.h"
+#include"DeleteObjectAction.h"
 #include "RollDiceAction.h"
 
 ///TODO: Add #include for all action types
@@ -13,6 +14,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output();
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
+	UpdateCond = true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -22,6 +24,10 @@ ApplicationManager::~ApplicationManager()
 	delete pGrid;
 }
 
+void ApplicationManager::SetUpdateCond(bool var)
+{
+	UpdateCond = var;
+}
 //==================================================================================//
 //								Interface Management Functions						//
 //==================================================================================//
@@ -33,6 +39,7 @@ Grid * ApplicationManager::GetGrid() const
 
 void ApplicationManager::UpdateInterface() const
 {
+	if(UpdateCond==true)
 	pGrid->UpdateInterface();
 }
 
@@ -44,6 +51,7 @@ ActionType ApplicationManager::GetUserAction() const
 {
 	// Ask the input to get the action from the user.
 	return pIn->GetUserAction();
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -52,12 +60,19 @@ ActionType ApplicationManager::GetUserAction() const
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
 	Action* pAct = NULL;
+	SetUpdateCond(false); //CHECK THIS IN CODE REVISING 
 
 	// According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
 	case ADD_LADDER:
 		pAct = new AddLadderAction(this);
+		break;
+	case ADD_SNAKE:
+		pAct = new AddSnakeAction(this);
+		break;
+	case DELETE_GAME_OBJECT:
+		pAct = new DeleteObjectAction(this);
 		break;
 
 	case ADD_CARD:
@@ -68,6 +83,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case EXIT:
 		break;
 
+	
 	case TO_PLAY_MODE:
 		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;

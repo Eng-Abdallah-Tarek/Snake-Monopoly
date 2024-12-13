@@ -13,7 +13,7 @@ AddCardAction::~AddCardAction()
 {
 }
 
-void AddCardAction::ReadActionParameters() 
+bool AddCardAction::ReadActionParameters() 
 {	
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
@@ -30,6 +30,7 @@ void AddCardAction::ReadActionParameters()
 	// 4- Make the needed validations on the read parameters
 
 	// 5- Clear status bar
+	return true;
 }
 
 void AddCardAction::Execute() 
