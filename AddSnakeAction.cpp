@@ -26,7 +26,7 @@ bool AddSnakeAction::ReadActionParameters()
 
 	if (startPos.VCell() == -1 || startPos.HCell() == -1)
 	{
-		pOut->PrintMessage("Please, click in the Grid Area on a Cell to select the cell you want!");
+		pOut->PrintMessage("Adding Snake is Cancelled ! Click in the Grid Area on a Cell to select the cell you want !");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -38,27 +38,27 @@ bool AddSnakeAction::ReadActionParameters()
 	///TODO: Make the needed validations on the read parameters
 	if (endPos.VCell() == -1 || endPos.HCell() == -1)
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled! Please, click in the Grid Area on the Cells to select the Cell you want!");
+		pOut->PrintMessage("Adding Snake is Cancelled ! Click in the Grid Area on the Cells to select the Cell you want !");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 
 	else if (startPos.HCell() != endPos.HCell())
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled! The Snake must be Vertical!");
+		pOut->PrintMessage("Adding Snake is Cancelled ! The Snake must be Vertical !");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 
 	else if (startPos.VCell() > endPos.VCell())
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled! The Snake must be drawn from top to bottom!");
+		pOut->PrintMessage("Adding Snake is Cancelled ! The Snake must be drawn from top to bottom !");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 	else if (startPos.VCell() == endPos.VCell()) //if it is the same cell nothing will be drawn!
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled! The start Cell and End cell can't be the same Cell!");
+		pOut->PrintMessage("Adding Snake is Cancelled ! The start Cell and End cell can't be the same Cell!");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -67,30 +67,26 @@ bool AddSnakeAction::ReadActionParameters()
 	return true;
 	
 }
-void AddSnakeAction::Execute() 
+
+void AddSnakeAction::Execute()
 {
-	ReadActionParameters();
-	/*
 	// The first line of any Action Execution is to read its parameter first 
 	// and hence initializes its data members
 	if (ReadActionParameters())
 	{
-		// Create a Snake object with the parameters read from the user
+		// Create a Ladder object with the parameters read from the user
 		Snake* pSnake = new Snake(startPos, endPos);
-
 		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-
-		// Add the card object to the GameObject of its Cell:
-		bool added = pGrid->AddObjectToCell(pSnake);
-
-		// if the GameObject cannot be added
-		if (!added)
+		if (pGrid->IsOverlapping(pSnake))  // detects the overlpapping with other Ladders 
 		{
-			// Print an appropriate message
-			pGrid->PrintErrorMessage("Error:The First Cell already has an Object ! Click to continue ..."); //i added the word The First Cell
 			pManager->SetUpdateCond(false);
+			delete pSnake;
+			return;
 		}
-		// Here, the Snake is created and added to the GameObject of its Cell, so we finished executing the AddSnakeAction
+
+		bool added = pGrid->AddObjectToCell(pSnake); //if the Ladder isn't added due to a snake or a card in the start cell
+		if (!added)
+			pGrid->PrintErrorMessage("There is already an Object in this Cell , Click to continue ...");
+		// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
 	}
-	*/
 }

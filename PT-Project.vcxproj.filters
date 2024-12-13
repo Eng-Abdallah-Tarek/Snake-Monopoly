@@ -193,6 +193,18 @@
     <ClCompile Include="Snake.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="CardSix.cpp">
+      <Filter>Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardNine.cpp">
+      <Filter>Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardFive.cpp">
+      <Filter>Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEight.cpp">
+      <Filter>Cards</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -312,6 +324,18 @@
     </ClInclude>
     <ClInclude Include="Snake.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CardSix.h">
+      <Filter>Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardNine.h">
+      <Filter>Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardFive.h">
+      <Filter>Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEight.h">
+      <Filter>Cards</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

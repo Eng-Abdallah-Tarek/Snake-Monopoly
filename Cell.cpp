@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "GameObject.h"
 #include "Ladder.h"
+#include "Snake.h"
 #include "Card.h"
 #include "Player.h"
 
@@ -29,8 +30,8 @@ CellPosition Cell::GetCellPosition() const
 
 bool Cell::SetGameObject(GameObject * pGObj)
 {
-	if (pGameObject != NULL) // already contains one
-		return false; // do NOT add it and return false
+	//if (pGameObject != NULL) // already contains one   // Very bad Setter that only set the object for one time !!!
+	//	return false; // do NOT add it and return false
 
 	pGameObject = pGObj;
 	return true;
@@ -51,7 +52,7 @@ Snake * Cell::HasSnake() const
 
 	///TODO: Implement the following function like HasLadder() function
 
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	return dynamic_cast<Snake *>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 }
 
 Card * Cell::HasCard() const

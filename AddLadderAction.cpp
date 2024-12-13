@@ -81,19 +81,17 @@ void AddLadderAction::Execute()
 	{
 		// Create a Ladder object with the parameters read from the user
 		Ladder* pLadder = new Ladder(startPos, endPos);
-
 		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
-
-		// Add the card object to the GameObject of its Cell:
-		bool added = pGrid->AddObjectToCell(pLadder);
-
-		// if the GameObject cannot be added
-		if (!added)
+		if (pGrid->IsOverlapping(pLadder))  // detects the overlpapping with other Ladders 
 		{
-			// Print an appropriate message
-			pGrid->PrintErrorMessage("Error:The First Cell already has an Object ! Click to continue ..."); //i added the word The First Cell
 			pManager->SetUpdateCond(false);
+			delete pLadder;
+			return;
 		}
+
+		bool added=pGrid->AddObjectToCell(pLadder); //if the Ladder isn't added due to a snake or a card in the start cell
+		if (!added)
+			pGrid->PrintErrorMessage("There is already an Object in this Cell , Click to continue ...");
 		// Here, the ladder is created and added to the GameObject of its Cell, so we finished executing the AddLadderAction
 	}
 }

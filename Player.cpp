@@ -32,7 +32,10 @@ int Player::GetWallet() const
 {
 	return wallet;
 }
-
+int Player::GetjustRolledDiceNum() const
+{
+	return justRolledDiceNum;
+}
 int Player::GetTurnCount() const
 {
 	return turnCount;

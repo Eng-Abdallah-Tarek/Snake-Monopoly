@@ -27,6 +27,40 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 	//    Review the "pGrid" functions and decide which function can be used for that
 	
 }
+bool Ladder::IsOverlapping(GameObject* ObjectComparedWith , Grid* pGrid) const
+{
+	Ladder* pLadder=dynamic_cast<Ladder*>(ObjectComparedWith);
+	if (pLadder)
+	{
+		int start2 = position.VCell()
+			, end2 = endCellPos.VCell()
+			, start1 = (pLadder->GetPosition()).VCell()
+			, end1 = (pLadder->GetEndPosition()).VCell();
+		if (start2 < end1)
+			return false;
+		else if (end2 > start1)
+			return false;
+		else if (end1 == start2)
+		{
+			pGrid->PrintErrorMessage("The End of a Ladder can't be the Start of another Ladder , Click to continue ...");
+			return true;
+		}
+		else if (end2 == start1)
+		{
+			pGrid->PrintErrorMessage("The Start of a Ladder can't be the End of another Ladder , Click to continue ...");
+			return true;
+		}
+		else 
+		{
+			pGrid->PrintErrorMessage("Two Ladders Can't Overlap , Click to continue ...");
+			return true;
+		}
+	}
+
+	else                   // if the ObjectComparedWith is NULL (this isn't the case of testing OverLapping) 
+		return false;
+}
+
 
 CellPosition Ladder::GetEndPosition() const
 {

@@ -42,18 +42,17 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 {
 	// Get the cell position of pNewObject
 	CellPosition pos = pNewObject->GetPosition();
-	//if (pos.IsValidCell()) // Check if valid position			// i see that this validation doesn't have a meaning since it is already done in the Addladder or snake action .cpp
-	//{
-		// Get the previous GameObject of the Cell
-		GameObject * pPrevObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
-		if( pPrevObject)  // the cell already contains a game object
+
+	// Get the previous GameObject of the Cell
+	GameObject * pPrevObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
+
+	if( pPrevObject)  // the cell already contains a game object
 			return false; // do NOT add and return false
 
-		// Set the game object of the Cell with the new game object
+	// Set the game object of the Cell with the new game object
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(pNewObject);
 		return true; // indicating that addition is done
-	//}
-	//return false; // if not a valid position			// this return doesn't also mean something important 
+	
 }
 
 bool Grid::RemoveObjectFromCell(const CellPosition & pos)
@@ -65,8 +64,9 @@ bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 		return false;	// do NOT add and return false
 
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
-	delete CellObject;
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
+	delete CellObject; //deleting the snake or ladder or card object 
+
 		return true; //indication that this position really had game object and it was deleted
 	//}
 
@@ -152,6 +152,19 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 	return NULL; // not found
 }
 
+// ========= Overlapping Checking =========
+bool Grid::IsOverlapping(GameObject* newobj)
+{
+	int HCell = (newobj->GetPosition()).HCell();
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		GameObject* ListObject = CellList[i][HCell]->GetGameObject();
+		// ListObject can be NULL, in this case the following is overlapping returns false to ignore 
+		if (newobj->IsOverlapping(ListObject,this))
+			return true;
+	}
+	return false;
+}
 
 // ========= User Interface Functions =========
 
