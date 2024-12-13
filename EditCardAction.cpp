@@ -15,7 +15,7 @@ EditCardAction::~EditCardAction()
 {
 
 }
-void EditCardAction::ReadActionParameters()
+bool EditCardAction::ReadActionParameters()
 {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
@@ -37,25 +37,19 @@ void EditCardAction::ReadActionParameters()
 			
 			num = i;
 			pOut->ClearStatusBar();
-			return;
+			return true;
 		}
 	}
 	pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to edit ! Click to continue ...");
 	ptr = NULL;
-	return;
-
-	
+	pManager->SetUpdateCond(false);
+	return false;
 }
 void EditCardAction::Execute()
 {
-
-	ReadActionParameters();
-	Grid* pGrid = pManager->GetGrid();
-	if (ptr)
+	if (ReadActionParameters())
 	{
+		Grid* pGrid = pManager->GetGrid();
 		ptr->ReadCardParameters(pGrid);
-		
-	}
-
-	return;
+	}	
 }
