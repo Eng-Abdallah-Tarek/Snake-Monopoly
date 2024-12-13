@@ -63,7 +63,8 @@ ActionType ApplicationManager::GetUserAction() const
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
 	Action* pAct = NULL;
-	SetUpdateCond(false); //CHECK THIS IN CODE REVISING 
+	SetUpdateCond(true);
+	 //CHECK THIS IN CODE REVISING 
 
 	// According to Action Type, create the corresponding action object
 	switch (ActType)
