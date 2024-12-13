@@ -1,17 +1,20 @@
 #include "InputDiceValueAction.h"
+#include "Input.h"
+#include "Output.h"
 #include "Grid.h"
 #include "Player.h"
 
 InputDiceValueAction::InputDiceValueAction(ApplicationManager* pApp): Action(pApp)
 {
+	// Initializes the pManager pointer of Action with the passed pointer
 }
 
 InputDiceValueAction::~InputDiceValueAction()
 {
 }
 
-void InputDiceValueAction::ReadActionParameters() 
-{ 
+void InputDiceValueAction::ReadActionParameters()
+{
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	pOut->PrintMessage("please enter a dice value between 1-6");

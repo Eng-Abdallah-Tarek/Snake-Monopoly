@@ -28,7 +28,7 @@ public:
 
 	void SetWallet(int wallet);		// A setter for the wallet
 	int GetWallet() const;			// a getter for the wallet
-
+	int GetjustRolledDiceNum() const;
 	int GetTurnCount() const;		// A getter for the turnCount
 
 	///TODO: You can add setters and getters for data members here (if needed)

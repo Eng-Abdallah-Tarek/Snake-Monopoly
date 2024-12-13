@@ -1,9 +1,14 @@
-#include "ApplicationManager.h"
-
-#include "Grid.h"
-#include "AddLadderAction.h"
-#include "AddCardAction.h"
+#include"ApplicationManager.h"
+#include"Grid.h"
+#include"AddLadderAction.h"
+#include"AddCardAction.h"
+#include"AddSnakeAction.h"
+#include"DeleteObjectAction.h"
 #include "RollDiceAction.h"
+#include "CopyCardAction.h"
+#include "PasteCardAction.h"
+#include "CutCardAction.h"
+#include "EditCardAction.h"
 #include "SwitchToPlayModeAction.h"
 #include "SwitcToDesignModeAction.h"
 #include "ExitAction.h"
@@ -17,6 +22,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output();
 	pIn = pOut->CreateInput();
 	pGrid = new Grid(pIn, pOut);
+	UpdateCond = true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +34,10 @@ ApplicationManager::~ApplicationManager()
 	delete pIn;
 }
 
+void ApplicationManager::SetUpdateCond(bool var)
+{
+	UpdateCond = var;
+}
 //==================================================================================//
 //								Interface Management Functions						//
 //==================================================================================//
@@ -39,6 +49,7 @@ Grid * ApplicationManager::GetGrid() const
 
 void ApplicationManager::UpdateInterface() const
 {
+	if(UpdateCond==true)
 	pGrid->UpdateInterface();
 }
 
@@ -50,6 +61,7 @@ ActionType ApplicationManager::GetUserAction() const
 {
 	// Ask the input to get the action from the user.
 	return pIn->GetUserAction();
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +70,8 @@ ActionType ApplicationManager::GetUserAction() const
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
 	Action* pAct = NULL;
+	SetUpdateCond(true);
+	 //CHECK THIS IN CODE REVISING 
 
 	// According to Action Type, create the corresponding action object
 	switch (ActType)
@@ -65,17 +79,39 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ADD_LADDER:
 		pAct = new AddLadderAction(this);
 		break;
+	case ADD_SNAKE:
+		pAct = new AddSnakeAction(this);
+		break;
+	case DELETE_GAME_OBJECT:
+		pAct = new DeleteObjectAction(this);
+		break;
 
 	case ADD_CARD:
 		// create an object of AddCardAction here
 		pAct = new AddCardAction(this);
 		break;
-
+	case COPY_CARD:
+		// create an object of AddCardAction here
+		pAct = new CopyCardAction(this);
+		break;
+	case PASTE_CARD:
+		// create an object of AddCardAction here
+		pAct = new PasteCardAction(this);
+		break;
+	case CUT_CARD:
+		// create an object of AddCardAction here
+		pAct = new CutCardAction(this);
+		break;
+	case EDIT_CARD:
+		// create an object of AddCardAction here
+		pAct = new EditCardAction(this);
+		break;
 	case EXIT:
 	case eXIT:
 		pAct = new ExitAction(this);
 		break;
 
+	
 	case TO_PLAY_MODE:
 		pAct = new SwitchToPlayModeAction(this); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;

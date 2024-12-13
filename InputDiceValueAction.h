@@ -4,7 +4,7 @@ class InputDiceValueAction :
     public Action
 {
     int InputValue;
-public: 
+public:
     InputDiceValueAction(ApplicationManager* pApp);
 
     virtual void ReadActionParameters();

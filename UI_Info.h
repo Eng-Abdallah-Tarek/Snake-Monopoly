@@ -11,6 +11,7 @@
 #define NumVerticalCells 9
 #define MaxPlayerCount 4
 
+
 enum GUI_MODE		// Graphical user interface mode
 {
 	MODE_DESIGN,	// Design mode (startup mode)

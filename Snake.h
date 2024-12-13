@@ -9,6 +9,7 @@ public:
     virtual void Draw(Output* pOut) const ;
     virtual void Apply(Grid* pGrid, Player* pPlayer);
     CellPosition GetEndPosition() const;
+    bool IsOverlapping(GameObject* newobj, Grid* pGrid) const;
     virtual ~Snake();
 };
 

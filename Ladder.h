@@ -15,7 +15,9 @@ public:
 	virtual void Draw(Output* pOut) const; // Draws a ladder from its start cell to its end cell
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applys the effect of the ladder by moving player to ladder's end cell
-
+	
+	bool IsOverlapping(GameObject* newobj , Grid* pGrid) const;
+	
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
 
 	virtual ~Ladder(); // Virtual destructor

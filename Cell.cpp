@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "GameObject.h"
 #include "Ladder.h"
+#include "Snake.h"
 #include "Card.h"
 #include "Player.h"
 
@@ -15,6 +16,7 @@ Cell::Cell(const CellPosition & pos) : position(pos)
 Cell::Cell(int v, int h) : position(v, h)
 {
 	// initializes the data members (position & pGameObject)
+	
 	pGameObject = NULL;
 }
 
@@ -51,16 +53,13 @@ Snake * Cell::HasSnake() const
 
 	///TODO: Implement the following function like HasLadder() function
 
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	return dynamic_cast<Snake *>(pGameObject); // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
 }
 
 Card * Cell::HasCard() const
 {
-
 	///TODO: Implement the following function like HasLadder() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
+	return dynamic_cast<Card*>(pGameObject);
 }
 
 
