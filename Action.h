@@ -6,6 +6,7 @@
 // Base class for all possible actions (actions are icons of the toolbar)
 class Action
 {
+
 protected:
 
 	ApplicationManager *pManager;	// Actions needs ApplicationManager to do their job

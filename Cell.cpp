@@ -16,6 +16,7 @@ Cell::Cell(const CellPosition & pos) : position(pos)
 Cell::Cell(int v, int h) : position(v, h)
 {
 	// initializes the data members (position & pGameObject)
+	
 	pGameObject = NULL;
 }
 
@@ -30,8 +31,8 @@ CellPosition Cell::GetCellPosition() const
 
 bool Cell::SetGameObject(GameObject * pGObj)
 {
-	//if (pGameObject != NULL) // already contains one   // Very bad Setter that only set the object for one time !!!
-	//	return false; // do NOT add it and return false
+	if (pGameObject != NULL && pGObj != NULL) // already contains one
+		return false; // do NOT add it and return false
 
 	pGameObject = pGObj;
 	return true;
@@ -57,11 +58,8 @@ Snake * Cell::HasSnake() const
 
 Card * Cell::HasCard() const
 {
-
 	///TODO: Implement the following function like HasLadder() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
+	return dynamic_cast<Card*>(pGameObject);
 }
 
 

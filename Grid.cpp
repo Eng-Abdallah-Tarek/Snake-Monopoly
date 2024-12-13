@@ -33,8 +33,12 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	// Initialize endGame with false
 	endGame = false;
 }
+Cell* Grid::getcell(int i, int j)
+{
 
-
+	Cell* c = CellList[i][j];
+	return c;
+}
 // ========= Adding or Removing GameObjects to Cells =========
 
 

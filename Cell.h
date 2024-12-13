@@ -18,6 +18,7 @@ class Cell
 
 	GameObject * pGameObject;       // a pointer to the GameObject existing in the Cell (if any)
 	                                // if no GameObject in this Cell, pGameObject should be NULL
+	const CellPosition* cellPtr;
 
 public:
 
@@ -27,6 +28,8 @@ public:
 	// ======= Setters and Getters Functions ======= 
 
 	CellPosition GetCellPosition() const;   // A getter for the "position" data member
+
+
 	
 	bool SetGameObject(GameObject * pGObj);	// A setter for pGameObject of the cell
 	                                        // It does NOT add the object and returns false if the cell already contains one
