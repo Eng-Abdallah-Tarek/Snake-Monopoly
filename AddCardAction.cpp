@@ -44,13 +44,20 @@ bool AddCardAction::ReadActionParameters()
 	// 4- Make the needed validations on the read parameters
 	if (number > 13 || number < 1)
 	{
-		pGrid->PrintErrorMessage("Error: in valid card number! Click to continue ...");
-		return false;
+		pGrid->PrintErrorMessage("Error: invalid card number ! Click to continue ...");
 		pManager->SetUpdateCond(false);
+		return false;
     }
+	if (!cardPosition.IsValidCell())
+	{
+		pOut->PrintMessage("Error: invalid cell ! Click to continue ...");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
 	cardNumber=number;
 	// 5- Clear status bar
 	pOut->ClearStatusBar();
+	return true;
 }
 
 void AddCardAction::Execute() 
