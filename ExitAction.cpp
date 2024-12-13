@@ -9,11 +9,15 @@ ExitAction::~ExitAction()
 {
 }
 
-void ExitAction::ReadActionParameters()
+bool ExitAction::ReadActionParameters()
 {
+	return 1;
 }
 
 void ExitAction::Execute()
 {
-	pManager->GetGrid()->PrintErrorMessage("Game Exit, Click anywhere to continue...");
+	Grid* pGrid = pManager->GetGrid();
+	pGrid->PrintErrorMessage("Game Exit, Click anywhere to continue...");
+	pGrid->SetEndGame(1);
+
 }

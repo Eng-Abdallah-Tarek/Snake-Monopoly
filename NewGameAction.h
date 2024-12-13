@@ -5,7 +5,7 @@ class NewGameAction :
 {
 public:
     NewGameAction(ApplicationManager* pApp);
-    virtual void ReadActionParameters();
+    virtual bool ReadActionParameters();
     virtual void Execute();
     virtual ~NewGameAction();
 

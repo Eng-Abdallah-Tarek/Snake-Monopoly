@@ -13,7 +13,7 @@ InputDiceValueAction::~InputDiceValueAction()
 {
 }
 
-void InputDiceValueAction::ReadActionParameters()
+bool InputDiceValueAction::ReadActionParameters()
 {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
@@ -21,11 +21,13 @@ void InputDiceValueAction::ReadActionParameters()
 	int temp = pGrid->GetInput()->GetInteger(pOut);
 	if (temp < 1 || temp > 6) {
 		pGrid->PrintErrorMessage("The input value must be an integer between 1-6, Click to continue...");
+		return 0;
 	}
 	else
 	{
 		InputValue = temp;
 		pOut->ClearStatusBar();
+		return 1;
 	}
 
 }

@@ -1,12 +1,22 @@
 #include "CardTwelve.h"
 
-CardTwelve::CardTwelve(const CellPosition& pos) : Card(pos), Owner(0)
+Player* CardTwelve ::Owner = 0;
+int CardTwelve::Fees = -1;
+int CardTwelve::Price = -1;
+
+
+CardTwelve::CardTwelve(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 12;
 }
 
 CardTwelve::~CardTwelve()
 {
+}
+
+void CardTwelve::RemoveOwner()
+{
+	Owner = 0;
 }
 
 bool CardTwelve::ReadCardParameters(Grid* pGrid)

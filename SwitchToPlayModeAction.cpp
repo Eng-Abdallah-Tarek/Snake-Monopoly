@@ -9,8 +9,9 @@ SwitchToPlayModeAction::~SwitchToPlayModeAction()
 {
 }
 
-void SwitchToPlayModeAction::ReadActionParameters()
+bool SwitchToPlayModeAction::ReadActionParameters()
 {
+	return 1;
 }
 
 void SwitchToPlayModeAction::Execute()

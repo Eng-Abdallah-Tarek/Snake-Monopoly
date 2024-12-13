@@ -8,8 +8,9 @@ SwitcToDesignModeAction::~SwitcToDesignModeAction()
 {
 }
 
-void SwitcToDesignModeAction::ReadActionParameters()
+bool SwitcToDesignModeAction::ReadActionParameters()
 {
+	return 1;
 }
 
 void SwitcToDesignModeAction::Execute()
