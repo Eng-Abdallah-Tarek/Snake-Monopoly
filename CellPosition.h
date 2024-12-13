@@ -55,7 +55,7 @@ public:
 	// It is a static function (no need for a calling obj)
 
 ///TODO: IMPLEMENT THE FOLLOWING FUNCTION
-	void AddCellNum(int addedNum); // Adds the passed "addedNum" to the "cellNum" of the current cell position
+	CellPosition& AddCellNum(int addedNum); // Adds the passed "addedNum" to the "cellNum" of the current cell position
 	// and updates the data members (vCell and hCell) accordingly
 	// for example, if cellNum = 50 and the passed num = 6
 	// this will make cellNum = 56 which updates the data members: vCell = 3 and hCell = 0 

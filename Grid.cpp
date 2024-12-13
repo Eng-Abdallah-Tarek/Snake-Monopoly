@@ -227,3 +227,13 @@ Grid::~Grid()
 		delete PlayerList[i];
 	}
 }
+
+void Grid::SetCurrentPlayer(int NewValue)
+{
+	currPlayerNumber = NewValue;
+}
+
+int Grid::GetCurrentPlayerNum()
+{
+	return currPlayerNumber;
+}

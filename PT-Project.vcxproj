@@ -133,7 +133,12 @@
     <ClCompile Include="AddLadderAction.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardEleven.cpp" />
     <ClCompile Include="CardOne.cpp" />
+    <ClCompile Include="CardSeven.cpp" />
+    <ClCompile Include="CardTen.cpp" />
+    <ClCompile Include="CardThirteen.cpp" />
+    <ClCompile Include="CardTwelve.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CellPosition.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -172,14 +177,20 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="ExitAction.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="InputDiceValueAction.cpp" />
     <ClCompile Include="Ladder.cpp" />
+    <ClCompile Include="NewGameAction.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RollDiceAction.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SwitchToPlayModeAction.cpp" />
+    <ClCompile Include="SwitcToDesignModeAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -187,7 +198,12 @@
     <ClInclude Include="AddLadderAction.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CardEleven.h" />
     <ClInclude Include="CardOne.h" />
+    <ClInclude Include="CardSeven.h" />
+    <ClInclude Include="CardTen.h" />
+    <ClInclude Include="CardThirteen.h" />
+    <ClInclude Include="CardTwelve.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellPosition.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
@@ -211,13 +227,19 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="ExitAction.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="InputDiceValueAction.h" />
     <ClInclude Include="Ladder.h" />
+    <ClInclude Include="NewGameAction.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RollDiceAction.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="SwitchToPlayModeAction.h" />
+    <ClInclude Include="SwitcToDesignModeAction.h" />
     <ClInclude Include="UI_Info.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

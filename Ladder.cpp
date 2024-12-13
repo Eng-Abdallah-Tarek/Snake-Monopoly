@@ -2,8 +2,10 @@
 
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
-	this->endCellPos = endCellPos;
-
+	if(startCellPos.HCell()==endCellPos.HCell() && startCellPos.VCell() > endCellPos.VCell())
+	{
+		this->endCellPos = endCellPos;
+	}
 	///TODO: Do the needed validation
 }
 
@@ -15,7 +17,8 @@ void Ladder::Draw(Output* pOut) const
 void Ladder::Apply(Grid* pGrid, Player* pPlayer) 
 {
 	
-
+	pGrid->PrintErrorMessage("You have reached a ladder. Click to continue ...");
+	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
 

@@ -114,13 +114,14 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 	return position;
 }
 
-void CellPosition::AddCellNum(int addedNum)
+CellPosition& CellPosition::AddCellNum(int addedNum)
 {
 
 	/// TODO: Implement this function as described in the .h file
 	int cellNum = GetCellNum();
 	cellNum += addedNum;
 	(*this) = GetCellPositionFromNum(cellNum);
+	return *this;
 	// Note: this function updates the data members (vCell and hCell) of the calling object
 
 }

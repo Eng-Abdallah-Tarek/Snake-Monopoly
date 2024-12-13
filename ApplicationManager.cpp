@@ -4,6 +4,10 @@
 #include "AddLadderAction.h"
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
+#include "SwitchToPlayModeAction.h"
+#include "SwitcToDesignModeAction.h"
+#include "ExitAction.h"
+
 
 ///TODO: Add #include for all action types
 
@@ -20,6 +24,8 @@ ApplicationManager::ApplicationManager()
 ApplicationManager::~ApplicationManager()
 {
 	delete pGrid;
+	delete pOut;
+	delete pIn;
 }
 
 //==================================================================================//
@@ -66,10 +72,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case EXIT:
+	case eXIT:
+		pAct = new ExitAction(this);
 		break;
 
 	case TO_PLAY_MODE:
-		pOut->CreatePlayModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new SwitchToPlayModeAction(this); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;
 
 	case ROLL_DICE:
@@ -78,13 +86,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case TO_DESIGN_MODE:
-		pOut->CreateDesignModeToolBar(); // temporary till you made its action class (CHANGE THIS LATTER)
+		pAct = new SwitcToDesignModeAction(this); // temporary till you made its action class (CHANGE THIS LATTER)
 		break;
 
 		
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
-
+	
 
 
 	case STATUS:	// a click on the status bar ==> no action

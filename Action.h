@@ -8,7 +8,7 @@ class Action
 {
 protected:
 
-	ApplicationManager *pManager;	// Actions needs ApplicationManager to do their job
+	ApplicationManager *pManager;	// Actions need ApplicationManager to do their job
 
 public:
 
