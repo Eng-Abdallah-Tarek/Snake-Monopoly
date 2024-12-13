@@ -54,9 +54,9 @@ bool AddCardAction::ReadActionParameters()
 		pManager->SetUpdateCond(false);
 		return false;
     }
-	if (!cardPosition.IsValidCell())
+	if (! cardPosition.IsValidCell())
 	{
-		pOut->PrintMessage("Error: invalid cell ! Click to continue ...");
+		pGrid->PrintErrorMessage("Error: invalid cell ! Click to continue ...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -77,7 +77,7 @@ void AddCardAction::Execute()
 
 	// 1- The first line of any Action Execution is to read its parameter first
 	if (ReadActionParameters())
- {
+    {
 		// 2- Switch case on cardNumber data member and create the appropriate card object type
 		Card* pCard = NULL; // will point to the card object type
 		switch (cardNumber)

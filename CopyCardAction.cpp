@@ -16,7 +16,7 @@ bool CopyCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	ptr = NULL;
-	pOut->PrintMessage("click on the source cell......");
+	pOut->PrintMessage("Click on the source cell......");
 	CellPosition cellpos = pIn->GetCellClicked();
 	 int v = cellpos.VCell();
 	 int h = cellpos.HCell();
@@ -28,13 +28,14 @@ bool CopyCardAction::ReadActionParameters()
 		 return false;
 	 }
 	 ptr = c->HasCard();
-	 if (ptr)
+	 if (!ptr)
 	 {
 		 return false;
 	 }
 	 pOut->ClearStatusBar();
 	 return true;
 }
+
 void CopyCardAction::Execute()
 {
 	if (ReadActionParameters())
