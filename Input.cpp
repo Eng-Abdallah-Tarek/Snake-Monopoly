@@ -178,6 +178,7 @@ ActionType Input::GetUserAction() const
 CellPosition Input::GetCellClicked() const
 {
 	int x, y;
+	pWind->FlushMouseQueue();
 	pWind->WaitMouseClick(x, y);	// Get the coordinates of the user click
 
 	CellPosition cellPos;

@@ -205,9 +205,6 @@
     <ClCompile Include="DeleteObjectAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Snake.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="CardSix.cpp">
       <Filter>Cards</Filter>
     </ClCompile>
@@ -229,6 +226,9 @@
     <ClCompile Include="CardThirteen.cpp" />
     <ClCompile Include="CardTwelve.cpp" />
     <ClCompile Include="PasteCardAction.cpp" />
+    <ClCompile Include="Snake.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -361,9 +361,6 @@
     <ClInclude Include="DeleteObjectAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Snake.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="CardSix.h">
       <Filter>Cards</Filter>
     </ClInclude>
@@ -388,5 +385,8 @@
     <ClInclude Include="CutCardAction.h" />
     <ClInclude Include="PasteCardAction.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="Snake.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos): GameObject(startCellPos)
+Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos) : GameObject(startCellPos)
 {
 	if (startCellPos.HCell() == endCellPos.HCell() && startCellPos.VCell() < endCellPos.VCell())
 	{
@@ -8,12 +8,12 @@ Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos): 
 	}
 }
 
-void Snake::Draw(Output* pOut) const 
+void Snake::Draw(Output* pOut) const
 {
 	pOut->DrawSnake(position, endCellPos);
 }
 
-bool Snake::IsOverlapping(GameObject* ObjectComparedWith, Grid* pGrid)const 
+bool Snake::IsOverlapping(GameObject* ObjectComparedWith, Grid* pGrid)const
 {
 	Snake* pLadder = dynamic_cast<Snake*>(ObjectComparedWith);
 	if (pLadder)

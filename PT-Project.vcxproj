@@ -185,7 +185,10 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="CopyCardAction.cpp" />
+    <ClCompile Include="CutCardAction.cpp" />
     <ClCompile Include="DeleteObjectAction.cpp" />
+    <ClCompile Include="EditCardAction.cpp" />
     <ClCompile Include="ExitAction.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -198,6 +201,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RollDiceAction.cpp" />
+    <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SwitchToPlayModeAction.cpp" />
     <ClCompile Include="SwitcToDesignModeAction.cpp" />
   </ItemGroup>
@@ -247,6 +251,7 @@
     <ClInclude Include="CutCardAction.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="DeleteObjectAction.h" />
+    <ClInclude Include="EditCardAction.h" />
     <ClInclude Include="ExitAction.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
