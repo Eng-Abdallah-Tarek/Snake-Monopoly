@@ -15,7 +15,7 @@ AddCardAction::~AddCardAction()
 {
 }
 
-void AddCardAction::ReadActionParameters() 
+bool AddCardAction::ReadActionParameters() 
 {	
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below

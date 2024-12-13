@@ -16,7 +16,7 @@ class ApplicationManager
 	// Pointers to the Input and Output 
 	Input *pIn;
 	Output *pOut;
-
+	bool UpdateCond; // i added this variable so that we don't go through the whole algorithm of Updating interface if there is no changes
 public:
 
 	ApplicationManager();  // Constructor: where the Input, Ouput and Grid are allocated
@@ -25,7 +25,7 @@ public:
 	// ========== Interface Management Functions ==========
 
 	Grid * GetGrid() const;    // Returns pointer to the Grid
-
+	void ApplicationManager::SetUpdateCond(bool );
 	void UpdateInterface() const;
 
 	// ========== Action-Related Functions ==========

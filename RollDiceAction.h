@@ -10,7 +10,7 @@ class RollDiceAction : public Action
 public:
 	RollDiceAction(ApplicationManager *pApp);
 
-	virtual void ReadActionParameters();
+	virtual bool ReadActionParameters();
 
 	virtual void Execute();
 
