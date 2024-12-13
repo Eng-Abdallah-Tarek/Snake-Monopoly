@@ -184,6 +184,20 @@
     <ClCompile Include="Output.cpp">
       <Filter>GUIClasses</Filter>
     </ClCompile>
+    <ClCompile Include="CardTwo.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardThree.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDiceValueAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyCardAction.cpp" />
+    <ClCompile Include="CardFour.cpp" />
+    <ClCompile Include="PasteCardAction.cpp" />
+    <ClCompile Include="CutCardAction.cpp" />
+    <ClCompile Include="EditCardAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -295,5 +309,19 @@
       <Filter>GUIClasses</Filter>
     </ClInclude>
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="CardTwo.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CardThree.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDiceValueAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyCardAction.h" />
+    <ClInclude Include="CardFour.h" />
+    <ClInclude Include="PasteCardAction.h" />
+    <ClInclude Include="CutCardAction.h" />
+    <ClInclude Include="EditCardAction.h" />
   </ItemGroup>
 </Project>

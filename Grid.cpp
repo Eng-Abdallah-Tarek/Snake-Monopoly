@@ -33,7 +33,12 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	// Initialize endGame with false
 	endGame = false;
 }
+Cell* Grid::getcell(int i, int j)
+{
 
+		Cell*c= CellList[i][j];
+		return c;
+}
 
 // ========= Adding or Removing GameObjects to Cells =========
 
@@ -61,6 +66,7 @@ void Grid::RemoveObjectFromCell(const CellPosition & pos)
 	if (pos.IsValidCell()) // Check if valid position
 	{
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
+		
 
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	}

@@ -4,7 +4,10 @@
 #include "AddLadderAction.h"
 #include "AddCardAction.h"
 #include "RollDiceAction.h"
-
+#include "CopyCardAction.h"
+#include "PasteCardAction.h"
+#include "CutCardAction.h"
+#include "EditCardAction.h"
 ///TODO: Add #include for all action types
 
 ApplicationManager::ApplicationManager()
@@ -64,7 +67,22 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// create an object of AddCardAction here
 		pAct = new AddCardAction(this);
 		break;
-
+	case COPY_CARD:
+		// create an object of AddCardAction here
+		pAct = new CopyCardAction(this);
+		break;
+	case PASTE_CARD:
+		// create an object of AddCardAction here
+		pAct = new PasteCardAction(this);
+		break;
+	case CUT_CARD:
+		// create an object of AddCardAction here
+		pAct = new CutCardAction(this);
+		break;
+	case EDIT_CARD:
+		// create an object of AddCardAction here
+		pAct = new EditCardAction(this);
+		break;
 	case EXIT:
 		break;
 
