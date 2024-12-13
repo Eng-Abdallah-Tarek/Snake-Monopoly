@@ -10,11 +10,13 @@ Cell::Cell(const CellPosition & pos) : position(pos)
 {
 	// initializes the data members (position & pGameObject)
 	pGameObject = NULL;
+	cellPtr = &pos;
 }
 
 Cell::Cell(int v, int h) : position(v, h)
 {
 	// initializes the data members (position & pGameObject)
+	
 	pGameObject = NULL;
 }
 
@@ -29,7 +31,7 @@ CellPosition Cell::GetCellPosition() const
 
 bool Cell::SetGameObject(GameObject * pGObj)
 {
-	if (pGameObject != NULL) // already contains one
+	if (pGameObject != NULL && pGObj != NULL) // already contains one
 		return false; // do NOT add it and return false
 
 	pGameObject = pGObj;
@@ -50,17 +52,14 @@ Snake * Cell::HasSnake() const
 {
 
 	///TODO: Implement the following function like HasLadder() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	//return dynamic_cast<Snake*>(pGameObject);                           // done, but i wait zaid to add Snak as agameobject(this is the true line )
+	return false;                                                       // this line must change with the above one
 }
 
 Card * Cell::HasCard() const
 {
-
 	///TODO: Implement the following function like HasLadder() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
+	return dynamic_cast<Card*>(pGameObject);
 }
 
 
