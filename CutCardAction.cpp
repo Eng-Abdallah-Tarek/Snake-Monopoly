@@ -18,8 +18,15 @@ bool CutCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	ptr = NULL;
-	pOut->PrintMessage("click on the source cell......");
-	 cellpos = pIn->GetCellClicked();
+	pOut->PrintMessage("Click on the card cell that you want to cut......");
+	cellpos = pIn->GetCellClicked();
+	 if (!cellpos.IsValidCell())
+	 {
+		 pGrid->PrintErrorMessage("You didn't Click on a Cell ! Cutting is Cancelled ! Click any where to continue ");
+		 pManager->SetUpdateCond(false);
+		 return false;
+
+	 }
 	int v = cellpos.VCell();
 	int h = cellpos.HCell();
 	Cell* c = pGrid->getcell(v, h);
@@ -30,10 +37,6 @@ bool CutCardAction::ReadActionParameters()
 		return false;
 	}
 	 ptr = c->HasCard();
-	 if (ptr)
-	 {
-		 return false;
-	 }
 	 pOut->ClearStatusBar();
 	 return true;
 }
@@ -44,6 +47,7 @@ void CutCardAction::Execute()
 		Grid* pGrid = pManager->GetGrid();
 		pGrid->SetClipboard(NULL);
 		pGrid->RemoveObjectFromCell(cellpos);
+		cout << 1;
 	}
-	
+	return;
 }

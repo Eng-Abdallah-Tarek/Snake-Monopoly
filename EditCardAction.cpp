@@ -21,8 +21,14 @@ bool EditCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	ptr = NULL;
-	pOut->PrintMessage("click on the source cell......");
+	pOut->PrintMessage("Click on the card cell that you want to edit......");
 	cellpos = pIn->GetCellClicked();
+	if (!cellpos.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("You didn't Click on a Cell ! Editting is Cancelled ! Click any where to continue ");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
 	int v = cellpos.VCell();
 	int h = cellpos.HCell();
 	Cell* c = pGrid->getcell(v, h);

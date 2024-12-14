@@ -16,8 +16,15 @@ bool CopyCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	ptr = NULL;
-	pOut->PrintMessage("Click on the source cell......");
+	pOut->PrintMessage("Click on the card cell that you want to copy......");
 	CellPosition cellpos = pIn->GetCellClicked();
+	if (!cellpos.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("You didn't Click on a Cell ! Editting is Cancelled ! Click any where to continue");
+		pManager->SetUpdateCond(false);
+		return false;
+
+	}
 	 int v = cellpos.VCell();
 	 int h = cellpos.HCell();
 	 Cell* c= pGrid->getcell(v,h);
@@ -28,10 +35,6 @@ bool CopyCardAction::ReadActionParameters()
 		 return false;
 	 }
 	 ptr = c->HasCard();
-	 if (!ptr)
-	 {
-		 return false;
-	 }
 	 pOut->ClearStatusBar();
 	 return true;
 }
@@ -42,6 +45,7 @@ void CopyCardAction::Execute()
 	{
 		Grid* pGrid = pManager->GetGrid();
 		pGrid->SetClipboard(ptr);
-	}
 	
+	}
+	return;
 }

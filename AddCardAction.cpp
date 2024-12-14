@@ -56,7 +56,7 @@ bool AddCardAction::ReadActionParameters()
     }
 	if (! cardPosition.IsValidCell())
 	{
-		pGrid->PrintErrorMessage("Error: invalid cell ! Click to continue ...");
+		pGrid->PrintErrorMessage("You didn't Click on a Cell ! Adding is Cancelled ! Click any where to continue ");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -121,7 +121,7 @@ void AddCardAction::Execute()
 
 		case 11:
 					pCard = new CardEleven(cardPosition);
-		break;
+		   break;
 
 		case 12:
 					pCard = new CardTwelve(cardPosition);

@@ -5,7 +5,6 @@
 #include "Ladder.h"
 #include "Card.h"
 #include "Player.h"
-
 Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
@@ -61,18 +60,20 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 
 bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 {
-	//if (pos.IsValidCell()) // Check if valid position
-	//{
+	if (pos.IsValidCell()) // Check if valid position
+	{
 	GameObject* CellObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 	if (!CellObject)  // the cell doesn't contain a game object
 		return false;	// do NOT add and return false
-
+	
+   // if(!dynamic_cast<Card*>(CellObject))    // because in copying card there is two pointer that have the same address 
+	  delete CellObject;
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
-	delete CellObject; //deleting the snake or ladder or card object 
-
+	 //deleting the snake or ladder or card object 
+	
 		return true; //indication that this position really had game object and it was deleted
-	//}
+	}
 
 }
 

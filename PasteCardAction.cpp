@@ -2,7 +2,8 @@
 #include "Grid.h"
 #include "Cell.h"
 #include "Card.h"
-
+#include<iostream>
+using namespace std;
 PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	
@@ -19,8 +20,14 @@ bool PasteCardAction::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("click on the destination cell.....");
+	pOut->PrintMessage("Click on the cell that you want to paste to it.....");
 	CellPosition c1 = pIn->GetCellClicked();
+	if (!c1.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("You didn't Click on a Cell ! Pasting is Cancelled ! Click any where to continue ");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
 	int v = c1.VCell();
 	int h = c1.HCell();
 	c = pGrid->getcell(v, h);
@@ -31,12 +38,7 @@ bool PasteCardAction::ReadActionParameters()
 		pManager->SetUpdateCond(false);
 		return false;
 	}
-
 	cellpos = c1;
-	if (!(cellpos.IsValidCell()))
-	{
-		return false;
-	}
 	pOut->ClearStatusBar();
 	return true;
 }
@@ -45,8 +47,10 @@ void PasteCardAction::Execute()
 	if (ReadActionParameters())
 	{
 		Grid* pGrid = pManager->GetGrid();
+		Output* pOut = pGrid->GetOutput();
 		Card* cardpaste = pGrid->GetClipboard();
 		c->SetGameObject(cardpaste);
-		
+		cout << 2;
 	}
+	return;
 }
