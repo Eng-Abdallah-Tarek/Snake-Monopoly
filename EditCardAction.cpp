@@ -29,25 +29,21 @@ bool EditCardAction::ReadActionParameters()
 		pManager->SetUpdateCond(false);
 		return false;
 	}
-	int v = cellpos.VCell();
-	int h = cellpos.HCell();
-	Cell* c = pGrid->getcell(v, h);
-	if (c->HasCard())
+	GameObject* pgame = pGrid->getgameobj(cellpos);
+	if (dynamic_cast<Card*>(pgame))
 	{
 		
-		ptr = c->HasCard();
+		ptr = dynamic_cast<Card*>(pgame);
 		int i = ptr->GetCardNumber();
 
 		if (i == 1 || i == 2 || i == 9||i==10||i==11||i==12||i==13)
 		{
-			
 			num = i;
 			pOut->ClearStatusBar();
 			return true;
 		}
 	}
 	pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to edit ! Click to continue ...");
-	ptr = NULL;
 	pManager->SetUpdateCond(false);
 	return false;
 }

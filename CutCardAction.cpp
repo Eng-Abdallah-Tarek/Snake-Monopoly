@@ -1,8 +1,7 @@
 #include "CutCardAction.h"
 #include "Grid.h"
 #include "GameObject.h"
-#include<iostream>
-using namespace std;
+#include "Card.h"
 CutCardAction::CutCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	// Initializes the pManager pointer of Action with the passed pointer
@@ -17,7 +16,6 @@ bool CutCardAction::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	ptr = NULL;
 	pOut->PrintMessage("Click on the card cell that you want to cut......");
 	cellpos = pIn->GetCellClicked();
 	 if (!cellpos.IsValidCell())
@@ -27,16 +25,14 @@ bool CutCardAction::ReadActionParameters()
 		 return false;
 
 	 }
-	int v = cellpos.VCell();
-	int h = cellpos.HCell();
-	Cell* c = pGrid->getcell(v, h);
-	if (!(c->HasCard()))
-	{
-		pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to cut ! Click to continue ...");
-		pManager->SetUpdateCond(false);
-		return false;
-	}
-	 ptr = c->HasCard();
+	 GameObject* pgame = pGrid->getgameobj(cellpos);
+	 if (!dynamic_cast<Card*>(pgame))
+	 {
+		 pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to cut! Click to continue ...");
+		 pManager->SetUpdateCond(false);
+		 return false;
+	 }
+	 ptr = dynamic_cast<Card*>(pgame);
 	 pOut->ClearStatusBar();
 	 return true;
 }
@@ -46,8 +42,7 @@ void CutCardAction::Execute()
 	{
 		Grid* pGrid = pManager->GetGrid();
 		pGrid->SetClipboard(NULL);
-		pGrid->RemoveObjectFromCell(cellpos);
-		cout << 1;
+		pGrid->RemoveObjectFromCell(cellpos);		
 	}
 	return;
 }

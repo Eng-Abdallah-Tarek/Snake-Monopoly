@@ -14,6 +14,13 @@ bool Card::SetCardNumber(int cnum)
 	}
 	return 0;
 }
+void Card::change(CellPosition c) 
+{
+
+	position = c;
+
+}
+
 
 int Card::GetCardNumber()
 {

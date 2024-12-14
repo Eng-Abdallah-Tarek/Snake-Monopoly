@@ -32,12 +32,7 @@ Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pI
 	// Initialize endGame with false
 	endGame = false;
 }
-Cell* Grid::getcell(int i, int j)
-{
 
-	Cell* c = CellList[i][j];
-	return c;
-}
 // ========= Adding or Removing GameObjects to Cells =========
 
 
@@ -57,6 +52,13 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 		return true; // indicating that addition is done
 	
 }
+void Grid::Helperfun(CellPosition pos, GameObject* ptr)
+{
+
+	CellList[pos.VCell()][pos.HCell()]->SetGameObject(ptr);
+	
+
+}
 
 bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 {
@@ -66,7 +68,7 @@ bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 	if (!CellObject)  // the cell doesn't contain a game object
 		return false;	// do NOT add and return false
 	
-   // if(!dynamic_cast<Card*>(CellObject))    // because in copying card there is two pointer that have the same address 
+   if(!dynamic_cast<Card*>(CellObject))    // because in copying card there is two pointer that have the same address 
 	  delete CellObject;
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
@@ -76,6 +78,14 @@ bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 	}
 
 }
+GameObject* Grid::getgameobj(CellPosition c)
+{
+	if(CellList[c.VCell()][c.HCell()]->GetGameObject())
+	return CellList[c.VCell()][c.HCell()]->GetGameObject();
+
+	return NULL;
+}
+
 
 void Grid::UpdatePlayerCell(Player * player, const CellPosition & newPosition)
 {

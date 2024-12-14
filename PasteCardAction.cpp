@@ -2,8 +2,19 @@
 #include "Grid.h"
 #include "Cell.h"
 #include "Card.h"
-#include<iostream>
-using namespace std;
+#include "CardOne.h"
+#include "CardTwo.h"
+#include "CardThree.h"
+#include "CardFour.h"
+#include "CardFive.h"
+#include "CardSix.h"
+#include "CardSeven.h"
+#include "CardEight.h"
+#include "CardNine.h"
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
 PasteCardAction::PasteCardAction(ApplicationManager* pApp) : Action(pApp)
 {
 	
@@ -28,13 +39,10 @@ bool PasteCardAction::ReadActionParameters()
 		pManager->SetUpdateCond(false);
 		return false;
 	}
-	int v = c1.VCell();
-	int h = c1.HCell();
-	c = pGrid->getcell(v, h);
-	if ((c->HasCard()) || (c->HasLadder()) || (c->HasSnake()))
+	GameObject* pgame = pGrid->getgameobj(c1);
+	if (pgame)
 	{
-
-		pGrid->PrintErrorMessage("Error: Cell already has an object !Click to continue ...");
+		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -48,9 +56,64 @@ void PasteCardAction::Execute()
 	{
 		Grid* pGrid = pManager->GetGrid();
 		Output* pOut = pGrid->GetOutput();
-		Card* cardpaste = pGrid->GetClipboard();
-		c->SetGameObject(cardpaste);
-		cout << 2;
+		Card* pCard = pGrid->GetClipboard();
+		int nun = pCard->GetCardNumber();
+		pCard->change(cellpos);
+		switch (nun)
+		{
+		case 1:
+			pCard = new CardOne(cellpos);
+			break;
+
+		case 2:
+			pCard = new CardTwo(cellpos);
+			break;
+
+		case 3:
+			pCard = new CardThree(cellpos);
+			break;
+
+		case 4:
+
+			pCard = new CardFour(cellpos);
+			break;
+
+		case 5:
+			pCard = new CardFive(cellpos);
+			break;
+
+		case 6:
+			pCard = new CardSix(cellpos);
+			break;
+		case 7:
+			pCard = new CardSeven(cellpos);
+			break;
+		case 8:
+			pCard = new CardEight(cellpos);
+			break;
+			/*case 9:
+					pCard = new CardNine(cardPosition);
+				break;*/
+		case 10:
+			pCard = new CardTen(cellpos);
+			break;
+
+		case 11:
+			pCard = new CardEleven(cellpos);
+			break;
+
+		case 12:
+			pCard = new CardTwelve(cellpos);
+			break;
+
+		case 13:
+			pCard = new CardThirteen(cellpos);
+			break;
+		default:
+			return;
+		}
+	  
+		pGrid->Helperfun(cellpos, pCard);
 	}
 	return;
 }
