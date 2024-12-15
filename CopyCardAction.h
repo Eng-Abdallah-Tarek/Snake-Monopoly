@@ -5,7 +5,7 @@
 class CopyCardAction : public Action
 {
 	Card* ptr;
-	Cell* c;
+	
 public:
 	CopyCardAction(ApplicationManager* pApp); // A Constructor
 

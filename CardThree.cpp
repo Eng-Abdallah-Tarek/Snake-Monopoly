@@ -1,5 +1,5 @@
 #include "CardThree.h"
-
+#include "Ladder.h"
 CardThree::CardThree(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 3; // set the inherited cardNumber data member with the card number (7z here)
@@ -17,7 +17,7 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 	Cell* cell = pPlayer->GetCell();
 	const  CellPosition c1 = cell->GetCellPosition();
 	Ladder* l = pGrid->GetNextLadder(c1);
-	const  CellPosition c2 = ((GameObject*)l)->GetPosition();
+	const  CellPosition c2 = l->GetPosition();            //((GameObject*)l)->GetPosition();
 	if (l)
 	{
 		int n2 = c2.GetCellNum();

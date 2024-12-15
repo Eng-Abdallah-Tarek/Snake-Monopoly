@@ -1,4 +1,5 @@
 #include "CardFour.h"
+#include "Snake.h"
 CardFour::CardFour(const CellPosition& pos) : Card(pos) // set the cell position of the card
 {
 	cardNumber = 4; // set the inherited cardNumber data member with the card number (4 here)
@@ -17,7 +18,7 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	Cell* cell = pPlayer->GetCell();
 	const  CellPosition c1 = cell->GetCellPosition();
 	//Snake* s = pGrid->GetNextSnake(c1);                      // must first added from them
-	//const  CellPosition c2 = ((GameObject*)s)->GetPosition();
+	//const  CellPosition c2 = s->GetPosition();//((GameObject*)s)->GetPosition();
 	//if (s)
 	//{
 	//	int n2 = c2.GetCellNum();

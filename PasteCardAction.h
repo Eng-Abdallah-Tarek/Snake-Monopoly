@@ -4,7 +4,7 @@
 class PasteCardAction : public Action
 {
 	CellPosition cellpos;
-	Cell* c;
+	
 public:
 	PasteCardAction(ApplicationManager* pApp); // A Constructor
 

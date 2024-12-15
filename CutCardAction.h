@@ -4,7 +4,7 @@ class CutCardAction : public Action
 {
 	CellPosition cellpos;
 	Card* ptr;
-	Cell* c;
+	
 public:
 	CutCardAction(ApplicationManager* pApp); // A Constructor
 

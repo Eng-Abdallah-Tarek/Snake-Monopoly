@@ -1,10 +1,6 @@
 #include "EditCardAction.h"
 #include "Grid.h"
 #include "Card.h"
-#include "CardOne.h"
-#include "CardTwo.h"
-#include "CardThree.h"
-#include "CardFour.h"
 
 EditCardAction::EditCardAction(ApplicationManager* pApp) : Action(pApp)
 {
@@ -38,7 +34,7 @@ bool EditCardAction::ReadActionParameters()
 
 		if (i == 1 || i == 2 || i == 9||i==10||i==11||i==12||i==13)
 		{
-			num = i;
+			
 			pOut->ClearStatusBar();
 			return true;
 		}
