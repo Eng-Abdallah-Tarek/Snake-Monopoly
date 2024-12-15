@@ -156,15 +156,32 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 	{
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
-
-
 			///TODO: Check if CellList[i][j] has a ladder, if yes return it
-			
+			if (CellList[i][j]->HasLadder())
+				return (CellList[i][j]->HasLadder());
 
 		}
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
 	}
 	return NULL; // not found
+}
+
+Snake* Grid::GetNextSnake(const CellPosition& position)
+{
+	int startH = position.HCell(); // represents the start hCell in the current row to search for the ladder in
+	for (int i = position.VCell(); i >= 0; i--) // searching from position.vCell and ABOVE
+	{
+		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
+		{
+			///TODO: Check if CellList[i][j] has a Snake, if yes return it
+			if (CellList[i][j]->HasSnake())
+				return (CellList[i][j]->HasSnake());
+
+		}
+		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
+	}
+	return NULL; // not found
+
 }
 
 // ========= Overlapping Checking =========

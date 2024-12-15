@@ -19,7 +19,7 @@ void RollDiceAction::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	if (pGrid->GetEndGame()) {
-		pGrid->PrintErrorMessage("The game is over! Click anywhere to continue...");
+		pGrid->PrintErrorMessage("The Game is Over! Click anywhere to continue...");
 	}
 	else
 		///TODO: Implement this function as mentioned in the guideline steps (numbered below) below

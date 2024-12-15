@@ -17,11 +17,12 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 	Cell* cell = pPlayer->GetCell();
 	const  CellPosition c1 = cell->GetCellPosition();
 	Ladder* l = pGrid->GetNextLadder(c1);
-	const  CellPosition c2 = l->GetPosition();            //((GameObject*)l)->GetPosition();
 	if (l)
 	{
+	const  CellPosition c2 = l->GetPosition();            //((GameObject*)l)->GetPosition();
 		int n2 = c2.GetCellNum();
 		int n1 = c1.GetCellNum();
 		pPlayer->Move(pGrid, n2 - n1);
+		l->Apply(pGrid, pPlayer);
 	}
 }
