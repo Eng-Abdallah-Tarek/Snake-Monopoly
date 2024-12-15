@@ -5,11 +5,11 @@
 #include "Input.h"
 #include "Output.h"
 #include "CellPosition.h"
-
 // forward declarations (the includes are in the cpp)
 class Cell;
 class GameObject;
 class Ladder;
+class Snake;
 class Card;
 class Player;
 
@@ -69,8 +69,10 @@ public:
 	// ========= Other Getters =========
 	
 	Player * GetCurrentPlayer() const;	// Gets a Pointer to the Current Player	                                    
-	Ladder * GetNextLadder(const CellPosition & position);  // Gets a Pointer to the first Ladder after the passed "position"
-	Snake* GetNextSnake(const CellPosition& position);
+	Ladder * GetNextLadder(const CellPosition & position);	// Gets a Pointer to the first Ladder after the passed "position"
+	
+	Snake * GetNextSnake(const CellPosition& position);
+	
 	// ========= Overlapping Checking =========
 	bool IsOverlapping(GameObject* newobj);
 
