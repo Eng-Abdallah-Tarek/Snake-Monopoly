@@ -256,6 +256,9 @@
     <ClCompile Include="CardSeven.cpp">
       <Filter>GameObjects\Cards</Filter>
     </ClCompile>
+    <ClCompile Include="SaveGridAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -440,6 +443,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="CutCardAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveGridAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
