@@ -52,7 +52,7 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 		return true; // indicating that addition is done
 	
 }
-void Grid::Helperfun(CellPosition pos, GameObject* ptr)
+void Grid::SetWithPos(CellPosition pos, GameObject* ptr)
 {
 
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(ptr);
