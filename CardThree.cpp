@@ -24,6 +24,6 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 		int n2 = c2.GetCellNum();
 		int n1 = c1.GetCellNum();
 		pPlayer->Move(pGrid, n2 - n1);
-		l->Apply(pGrid, pPlayer);
+		
 	}
 }
