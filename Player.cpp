@@ -23,6 +23,11 @@ Cell* Player::GetCell() const
 	return pCell;
 }
 
+void Player::SetTurnCount(int val)
+{
+	turnCount = val;
+}
+
 void Player::SetWallet(int pwallet)
 {
 	wallet = (pwallet < 0) ? 0 : pwallet;

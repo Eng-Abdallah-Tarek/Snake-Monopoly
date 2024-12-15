@@ -6,6 +6,7 @@ class CardTwelve :
 
   static  int Price, Fees;
   static Player* Owner;
+  static bool HaveNotReadPars;
 public:
     CardTwelve(const CellPosition& pos);
 

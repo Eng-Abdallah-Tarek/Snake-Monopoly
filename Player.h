@@ -30,7 +30,7 @@ public:
 	int GetWallet() const;			// a getter for the wallet
 	int GetjustRolledDiceNum() const;
 	int GetTurnCount() const;		// A getter for the turnCount
-
+	void SetTurnCount(int);
 	///TODO: You can add setters and getters for data members here (if needed)
 	void ChangeWallet( int, bool);
 	// ====== Drawing Functions ======

@@ -12,6 +12,8 @@
 #include "SwitchToPlayModeAction.h"
 #include "SwitcToDesignModeAction.h"
 #include "ExitAction.h"
+#include "NewGameAction.h"
+#include "InputDiceValueAction.h"
 
 
 ///TODO: Add #include for all action types
@@ -30,8 +32,6 @@ ApplicationManager::ApplicationManager()
 ApplicationManager::~ApplicationManager()
 {
 	delete pGrid;
-	delete pOut;
-	delete pIn;
 }
 
 void ApplicationManager::SetUpdateCond(bool var)
@@ -49,7 +49,7 @@ Grid * ApplicationManager::GetGrid() const
 
 void ApplicationManager::UpdateInterface() const
 {
-	if(UpdateCond==true)
+	if(UpdateCond)
 	pGrid->UpdateInterface();
 }
 
@@ -128,7 +128,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
-	
+	case NEW_GAME:
+		pAct = new NewGameAction(this);
+		break;
+
+	case INPUT_DICE_VALUE:
+		pAct = new InputDiceValueAction(this);
+		break;
 
 
 	case STATUS:	// a click on the status bar ==> no action

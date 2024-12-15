@@ -2,7 +2,7 @@
 Player* CardThirteen::Owner = 0;
 int CardThirteen::Fees = -1;
 int CardThirteen::Price = -1;
-
+bool CardThirteen::HaveNotReadPars = 1;
 
 CardThirteen::CardThirteen(const CellPosition& pos) : Card(pos)
 {
@@ -20,22 +20,27 @@ void CardThirteen::RemoveOwner()
 
 bool CardThirteen::ReadCardParameters(Grid* pGrid)
 {
-	Output* pOut = pGrid->GetOutput();
-	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Card 13: Enter the station's price: ");
-	int temp = pIn->GetInteger(pOut);
-	if (temp < 0) {
-		pGrid->PrintErrorMessage("Cancelled, the price must be a positive integer. Click to continue...");
-		return 0;
+	if (HaveNotReadPars)
+	{
+		Output* pOut = pGrid->GetOutput();
+		Input* pIn = pGrid->GetInput();
+		HaveNotReadPars = 0;
+		pOut->PrintMessage("Card 13: Enter the station's price: ");
+		int temp = pIn->GetInteger(pOut);
+		if (temp < 0) {
+			pGrid->PrintErrorMessage("Cancelled, the price must be a positive integer. Click to continue...");
+			return 0;
+		}
+		Price = temp;
+		pOut->PrintMessage("Card 13: Enter the station's Fees: ");
+		temp = pIn->GetInteger(pOut);
+		if (temp < 0) {
+			pGrid->PrintErrorMessage("Cancelled, the fees must be a positive integer. Click to continue...");
+			return 0;
+		}
+		Fees = temp;
+		return 1;
 	}
-	Price = temp;
-	pOut->PrintMessage("Card 13: Enter the station's Fees: ");
-	temp = pIn->GetInteger(pOut);
-	if (temp < 0) {
-		pGrid->PrintErrorMessage("Cancelled, the fees must be a positive integer. Click to continue...");
-		return 0;
-	}
-	Fees = temp;
 	return 1;
 }
 

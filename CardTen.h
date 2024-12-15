@@ -5,7 +5,7 @@ class CardTen :
 {
     static int Price, Fees;
     static Player* Owner;
-
+    static bool HaveNotReadPars;
 public:
 
     CardTen(const CellPosition& pos);

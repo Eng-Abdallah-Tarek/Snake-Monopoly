@@ -22,11 +22,13 @@ void NewGameAction::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	CellPosition start(1);
+	Player* pPlayer;
 	for (int i = 0; i < 4; i++)
 	{
-		Player* pPlayer = pGrid->GetCurrentPlayer();
+		pPlayer = pGrid->GetCurrentPlayer();
 		pGrid->UpdatePlayerCell(pPlayer, start);
 		pPlayer->SetWallet(100);
+		pPlayer->SetTurnCount(0);
 		pGrid->AdvanceCurrentPlayer();
 	}
 	pGrid->SetCurrentPlayer(0);

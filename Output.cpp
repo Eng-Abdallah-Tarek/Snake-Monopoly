@@ -292,14 +292,13 @@ void Output::PrintPlayersInfo(string info)
 	///TODO: Calculate the Width and Height of the string if drawn using the current font 
 	//       (Use GetStringSize() window function) and set the "w" and "h" variables with its width and height
 	int w = 0, h = 0;
-
 	// Set the start X & Y coordinate of drawing the string
 	 // space 20 before the right-side of the window
 							   // ( - w ) because x is the coordinate of the start point of the string (upper left)
 	 // in the Middle of the toolbar height
 	
 	pWind->GetStringSize(w, h, info);
-	int x = UI.width - w - 50;
+	int x = UI.width - w - 200;
 	int y = (UI.ToolBarHeight - h) / 2;
 
 	///TODO: Clear what was written on the toolbar

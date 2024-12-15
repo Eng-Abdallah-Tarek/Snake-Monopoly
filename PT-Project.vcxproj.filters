@@ -25,7 +25,7 @@
     <Filter Include="GUIClasses">
       <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Cards">
+    <Filter Include="GameObjects\Cards">
       <UniqueIdentifier>{28af86b7-026e-44cd-b907-8de0d89f27ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -152,7 +152,7 @@
     </ClCompile>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Card.cpp">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
     <ClCompile Include="Ladder.cpp">
       <Filter>GameObjects</Filter>
@@ -161,7 +161,7 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="CardOne.cpp">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
     <ClCompile Include="AddCardAction.cpp">
       <Filter>Actions</Filter>
@@ -206,28 +206,55 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="CardSix.cpp">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
     <ClCompile Include="CardNine.cpp">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
     <ClCompile Include="CardFive.cpp">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
     <ClCompile Include="CardEight.cpp">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
-    <ClCompile Include="CardFour.cpp" />
-    <ClCompile Include="CardEleven.cpp" />
-    <ClCompile Include="CardThree.cpp" />
-    <ClCompile Include="CardTwo.cpp" />
-    <ClCompile Include="CardSeven.cpp" />
-    <ClCompile Include="CardTen.cpp" />
-    <ClCompile Include="CardThirteen.cpp" />
-    <ClCompile Include="CardTwelve.cpp" />
-    <ClCompile Include="PasteCardAction.cpp" />
     <ClCompile Include="Snake.cpp">
       <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEleven.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardFour.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardTen.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardThirteen.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardThree.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardTwelve.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardTwo.cpp">
+      <Filter>GameObjects\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyCardAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CutCardAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="EditCardAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="PasteCardAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CardSeven.cpp">
+      <Filter>GameObjects\Cards</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,10 +331,10 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Card.h">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="CardOne.h">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="Ladder.h">
       <Filter>GameObjects</Filter>
@@ -362,31 +389,58 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="CardSix.h">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="CardNine.h">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="CardFive.h">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
     <ClInclude Include="CardEight.h">
-      <Filter>Cards</Filter>
+      <Filter>GameObjects\Cards</Filter>
     </ClInclude>
-    <ClInclude Include="CardEleven.h" />
-    <ClInclude Include="CardFour.h" />
-    <ClInclude Include="CardSeven.h" />
-    <ClInclude Include="CardTen.h" />
-    <ClInclude Include="CardThirteen.h" />
-    <ClInclude Include="CardTwelve.h" />
-    <ClInclude Include="CardThree.h" />
-    <ClInclude Include="CardTwo.h" />
-    <ClInclude Include="CopyCardAction.h" />
-    <ClInclude Include="CutCardAction.h" />
-    <ClInclude Include="PasteCardAction.h" />
-    <ClInclude Include="Snake.h" />
     <ClInclude Include="Snake.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEleven.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardFour.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTen.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardSeven.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardThirteen.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardThree.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTwelve.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="CardTwo.h">
+      <Filter>GameObjects\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyCardAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="EditCardAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="PasteCardAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CutCardAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

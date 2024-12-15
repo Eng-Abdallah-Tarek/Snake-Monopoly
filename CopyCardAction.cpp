@@ -16,7 +16,7 @@ bool CopyCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	ptr = NULL;
-	pOut->PrintMessage("Click on the cell that you want to copy to it.....");
+	pOut->PrintMessage("Click on the cell that you want to copy from...");
 	CellPosition cellpos = pIn->GetCellClicked();
 	if (!cellpos.IsValidCell())
 	{
