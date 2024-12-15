@@ -57,6 +57,10 @@ void PasteCardAction::Execute()
 		Grid* pGrid = pManager->GetGrid();
 		Output* pOut = pGrid->GetOutput();
 		Card* pCard = pGrid->GetClipboard();
+		if (pCard == NULL)
+		{
+			return;
+		}
 		int nun = pCard->GetCardNumber();
 		pCard->change(cellpos);
 		switch (nun)
@@ -114,6 +118,7 @@ void PasteCardAction::Execute()
 		}
 	  
 		pGrid->Helperfun(cellpos, pCard);
+		//pGrid->SetClipboard(NULL);
 	}
 	return;
 }
