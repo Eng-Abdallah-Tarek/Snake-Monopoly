@@ -41,7 +41,7 @@ void CutCardAction::Execute()
 	if (ReadActionParameters())
 	{
 		Grid* pGrid = pManager->GetGrid();
-		pGrid->SetClipboard(NULL);
+		pGrid->SetClipboard(ptr);
 		pGrid->RemoveObjectFromCell(cellpos);		
 	}
 	return;
