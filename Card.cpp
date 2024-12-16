@@ -1,8 +1,9 @@
 #include "Card.h"
-
+int Card::count = 0;
 
 Card::Card(const CellPosition & pos) : GameObject(pos), cardNumber(-1) // sets the cell position of the GameObject
 {
+	count++;
 }
 
 bool Card::SetCardNumber(int cnum)
@@ -42,6 +43,11 @@ bool Card::ReadCardParameters(Grid * pGrid)
 	return true;
 }
 
+int Card::getCount()
+{
+	return count;
+}
+
 void Card::Apply(Grid* pGrid, Player* pPlayer) 
 {
 	// As written below the "Roll Dice" action in the document ==> Check the Project Document
@@ -50,6 +56,12 @@ void Card::Apply(Grid* pGrid, Player* pPlayer)
 	pGrid->PrintErrorMessage("You have reached card " + to_string(cardNumber) + ". Click to continue ...");
 }
 
+void Card::Save(ofstream& file)
+{
+	file << cardNumber << ' ' << position.GetCellNum() << ' ';
+}
+
 Card::~Card()
 {
+	count--;
 }

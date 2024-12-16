@@ -5,14 +5,20 @@ class CardThirteen :
 {
  static   int Price, Fees;
  static   Player* Owner;
- static   bool HaveNotReadPars;
+ static   bool HaveNotReadPars, HaveNotSavedPars;
 
 public:
     CardThirteen(const CellPosition& pos);
 
+    CardThirteen(const CellPosition& pos, int, int);
+
     virtual bool ReadCardParameters(Grid* pGrid);
 
     static void RemoveOwner();
+
+    virtual void Save(ofstream&);
+
+    static void SetHaveNotSavedPars(bool);
 
     virtual void Apply(Grid* pGrid, Player* pPlayer);
 

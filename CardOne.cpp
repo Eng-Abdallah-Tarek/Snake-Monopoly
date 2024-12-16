@@ -1,6 +1,7 @@
 #include "CardOne.h"
-CardOne::CardOne(const CellPosition & pos) : Card(pos) // set the cell position of the card
+CardOne::CardOne(const CellPosition& pos, int WA) : Card(pos) // set the cell position of the card
 {
+	walletAmount = WA;
 	cardNumber = 1; // set the inherited cardNumber data member with the card number (1 here)
 }
 
@@ -43,6 +44,12 @@ bool CardOne::ReadCardParameters(Grid * pGrid)
 	}
 	else
 	return true;
+}
+
+void CardOne::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << walletAmount << '\n';
 }
 
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)

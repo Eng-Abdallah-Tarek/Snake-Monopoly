@@ -42,21 +42,27 @@ bool AddCardAction::ReadActionParameters()
 	pOut->PrintMessage("Entre the type card number........");
 	int number = pIn->GetInteger(pOut);
 	int x, y;
-	
-	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
-	pOut->PrintMessage("Add Card: Click on a Cell .......");
-	cardPosition =pIn->GetCellClicked();
-	
-	// 4- Make the needed validations on the read parameters
 	if (number > 13 || number < 1)
 	{
 		pGrid->PrintErrorMessage("Error: invalid card number ! Click to continue ...");
 		pManager->SetUpdateCond(false);
 		return false;
     }
+	
+	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
+	pOut->PrintMessage("Add Card: Click on a Cell .......");
+	cardPosition =pIn->GetCellClicked();
+	
+	// 4- Make the needed validations on the read parameters
 	if (! cardPosition.IsValidCell())
 	{
 		pGrid->PrintErrorMessage("You didn't Click on a Cell ! Adding is Cancelled ! Click any where to continue ");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
+	else if (cardPosition.GetCellNum() == 1 || cardPosition.GetCellNum() == 99)
+	{
+		pGrid->PrintErrorMessage("First and Last cell can't have a Card ! Click any where to continue .... ");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -107,13 +113,13 @@ void AddCardAction::Execute()
 			pCard = new CardSix(cardPosition);
 			break;
 		case 7:
-				pCard = new CardSeven(cardPosition);
+			pCard = new CardSeven(cardPosition);
 			break;
 		case 8:
 			pCard = new CardEight(cardPosition);
 			break;
 		case 9:
-				pCard = new CardNine(cardPosition);
+			pCard = new CardNine(cardPosition);
 			break;
 		case 10:
 					pCard = new CardTen(cardPosition);
@@ -151,9 +157,15 @@ void AddCardAction::Execute()
 				{
 					// Print an appropriate message
 					pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+					delete pCard;
 					return;
 				}
 				// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
+			}
+			else // if card parameters weren't valid
+			{
+				delete pCard;
+				return;
 			}
 		}
 

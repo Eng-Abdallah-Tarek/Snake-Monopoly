@@ -1,10 +1,17 @@
 #include "CardNine.h"
 CardNine::CardNine(const CellPosition& cardpostion):Card(cardpostion)
 {
+	cardNumber = 9;
+}
 
+CardNine::CardNine(const CellPosition& cardpostion, CellPosition CP) :Card(cardpostion)
+{
+	cardNumber = 9;
+	moveto = CP;
 }
 void CardNine::Apply(Grid* pGrid, Player* pPlayer)
 { 
+	Card::Apply(pGrid, pPlayer);
 	int dicevalue = moveto.GetCellNum() - position.GetCellNum() ;
 	pPlayer->Move(pGrid, dicevalue);
 }
@@ -12,6 +19,7 @@ bool CardNine::ReadCardParameters(Grid* pGrid)  //returns false in the case that
 {
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
+	pOut->PrintMessage("Please, click on the cell to move to on reaching card 9...");
 	CellPosition InputedCell =pIn->GetCellClicked();
 	if (! InputedCell.IsValidCell() )
 	{
@@ -23,6 +31,12 @@ bool CardNine::ReadCardParameters(Grid* pGrid)  //returns false in the case that
 		moveto = InputedCell; 
 		return true;
 	}
+	pOut->ClearStatusBar();
+}
+void CardNine::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << moveto.GetCellNum() << '\n';
 }
 CardNine::~CardNine()
 { }

@@ -3,7 +3,7 @@
 #include "Card.h"
 // [ CardFour ] Summary:Moves the player forward to the start of the next snake.
 
-// Its Parameters: there is no parameters
+// Its Parameters: there are no parameters
 
 
 class CardFour : public Card
@@ -20,6 +20,7 @@ public:
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Moves the player forward to the start of the next snake.
 
+	virtual void Save(ofstream&);
 
 	virtual ~CardFour(); // A Virtual Destructor
 

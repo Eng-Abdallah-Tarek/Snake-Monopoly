@@ -2,7 +2,7 @@
 #include "Card.h"
 // [ CardThree ] Summary:Moves the player forward to the start of the next ladder.
 
-// Its Parameters: there is no parameters
+// Its Parameters: there are no parameters
 
 
 class CardThree : public Card
@@ -17,6 +17,8 @@ public:
 
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Moves the player forward to the start of the next ladder.
+
+	virtual void Save(ofstream&);
 
 	
 	virtual ~CardThree(); // A Virtual Destructor

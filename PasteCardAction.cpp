@@ -59,7 +59,7 @@ void PasteCardAction::Execute()
 		Card* pCard = pGrid->GetClipboard();
 		if (pCard == NULL)
 		{
-			pGrid->PrintErrorMessage("You must copy or cut card first befor Pasting ! Click to continue ...");
+			pGrid->PrintErrorMessage("You must copy or caut a card first befor Pasting ! Click to continue ...");
 			return;
 		}
 		int nun = pCard->GetCardNumber();

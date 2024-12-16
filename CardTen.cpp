@@ -4,14 +4,28 @@ Player* CardTen::Owner = 0;
 int CardTen::Fees = -1;
 int CardTen::Price = -1;
 bool CardTen::HaveNotReadPars = 1;
+bool CardTen::HaveNotSavedPars = 1;
 
 CardTen::CardTen(const CellPosition& pos): Card(pos)
 {
 	cardNumber = 10;
 }
 
+CardTen::CardTen(const CellPosition& pos, int price, int fee): Card(pos)
+{
+	cardNumber = 10;
+	Price = price;
+	Fees = fee;
+	HaveNotReadPars = 0;
+}
+
 CardTen::~CardTen()
 {
+}
+
+void CardTen::SetHaveNotSavedPars(bool par)
+{
+	HaveNotSavedPars = par;
 }
 
  void CardTen::RemoveOwner()
@@ -72,4 +86,15 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 		}
 
 	}
+}
+
+void CardTen::Save(ofstream& file)
+{
+	Card::Save(file);
+	if(HaveNotSavedPars)
+	{
+		file << Price << ' ' << Fees;
+		HaveNotSavedPars = 0;
+	}
+	file << '\n';
 }

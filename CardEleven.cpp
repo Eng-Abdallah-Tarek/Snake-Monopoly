@@ -4,11 +4,20 @@ Player* CardEleven::Owner = 0;
 int CardEleven::Fees = -1;
 int CardEleven::Price = -1;
 bool CardEleven::HaveNotReadPars = 1;
+bool CardEleven::HaveNotSavedPars = 1;
 
 
 CardEleven::CardEleven(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 11;
+}
+
+CardEleven::CardEleven(const CellPosition& pos, int price, int fee) : Card(pos)
+{
+	cardNumber = 11;
+	Price = price;
+	Fees = fee;
+	HaveNotReadPars = 0;
 }
 
 CardEleven::~CardEleven()
@@ -18,6 +27,11 @@ CardEleven::~CardEleven()
 void CardEleven::RemoveOwner()
 {
 	Owner = 0;
+}
+
+void CardEleven::SetHaveNotSavedPars(bool par)
+{
+	HaveNotSavedPars = par;
 }
 
 bool CardEleven::ReadCardParameters(Grid* pGrid)
@@ -73,4 +87,15 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 		}
 
 	}
+}
+
+void CardEleven::Save(ofstream& file)
+{
+	Card::Save(file);
+	if(HaveNotSavedPars)
+	{
+		file << Price << ' ' << Fees;
+		HaveNotSavedPars = 0;
+	}
+	file << '\n';
 }

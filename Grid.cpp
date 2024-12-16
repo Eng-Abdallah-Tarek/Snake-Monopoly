@@ -1,10 +1,16 @@
 #include "Grid.h"
-
+#include"Snake.h"
 #include "Cell.h"
 #include "GameObject.h"
 #include "Ladder.h"
 #include "Card.h"
 #include "Player.h"
+#include <fstream>
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+using namespace std;
 Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
@@ -52,6 +58,17 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 		return true; // indicating that addition is done
 	
 }
+
+void Grid::RemoveAllObjects()
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) 
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) 
+		{
+			CellList[i][j]->SetGameObject(0);
+		}
+	}
+}
 void Grid::SetWithPos(CellPosition pos, GameObject* ptr)
 {
 
@@ -62,26 +79,29 @@ void Grid::SetWithPos(CellPosition pos, GameObject* ptr)
 
 bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 {
-	if (pos.IsValidCell()) // Check if valid position
-	{
+	//if (pos.IsValidCell()) // Check if valid position
+	//{
 	GameObject* CellObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 	if (!CellObject)  // the cell doesn't contain a game object
 		return false;	// do NOT add and return false
 	
-     
-	  delete CellObject;
+    
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
+	delete CellObject;
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	 //deleting the snake or ladder or card object 
 	
 		return true; //indication that this position really had game object and it was deleted
-	}
+	//}
 
 }
 GameObject* Grid::getgameobj(CellPosition c)
 {
 	if(CellList[c.VCell()][c.HCell()]->GetGameObject())
+
 	return CellList[c.VCell()][c.HCell()]->GetGameObject();
+
+	else 
 
 	return NULL;
 }
@@ -114,7 +134,7 @@ Output * Grid::GetOutput() const
 	return pOut;
 }
 
-void Grid::SetClipboard(Card * pCard) // to be used in copy/cut
+void Grid::SetClipboard(Card* pCard) // to be used in copy/cut
 {
 	// you may update slightly in implementation if you want (but without breaking responsibilities)
 	Clipboard = pCard;
@@ -156,15 +176,32 @@ Ladder * Grid::GetNextLadder(const CellPosition & position)
 	{
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
-
-
 			///TODO: Check if CellList[i][j] has a ladder, if yes return it
-			
+			if (CellList[i][j]->HasLadder())
+				return (CellList[i][j]->HasLadder());
 
 		}
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
 	}
 	return NULL; // not found
+}
+
+Snake* Grid::GetNextSnake(const CellPosition& position)
+{
+	int startH = position.HCell(); // represents the start hCell in the current row to search for the ladder in
+	for (int i = position.VCell(); i >= 0; i--) // searching from position.vCell and ABOVE
+	{
+		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
+		{
+			///TODO: Check if CellList[i][j] has a Snake, if yes return it
+			if (CellList[i][j]->HasSnake())
+				return (CellList[i][j]->HasSnake());
+
+		}
+		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
+	}
+	return NULL; // not found
+
 }
 
 // ========= Overlapping Checking =========
@@ -222,7 +259,7 @@ void Grid::UpdateInterface() const
 			if (i < MaxPlayerCount-1) // except the last player
 				playersInfo += ", ";
 		}
-		playersInfo += " | Curr = " + to_string(currPlayerNumber);
+		playersInfo += (" | Curr = " + to_string(currPlayerNumber));
 
 		pOut->PrintPlayersInfo(playersInfo);
 
@@ -240,6 +277,40 @@ void Grid::PrintErrorMessage(string msg)
 	pOut->ClearStatusBar();
 }
 
+void Grid::SaveAll(ofstream& file)
+{
+	file << Ladder::getCount() << '\n';
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (dynamic_cast<Ladder*>(CellList[i][j]->GetGameObject()))
+				CellList[i][j]->GetGameObject()->Save(file);
+		}
+	}
+	file << Snake::getCount() << '\n';
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (dynamic_cast<Snake*>(CellList[i][j]->GetGameObject()))
+				CellList[i][j]->GetGameObject()->Save(file);
+		}
+	}
+	file << Card::getCount() << '\n';
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (dynamic_cast<Card*>(CellList[i][j]->GetGameObject()))
+				CellList[i][j]->GetGameObject()->Save(file);
+		}
+	}
+	CardTen::SetHaveNotSavedPars(1);
+	CardEleven::SetHaveNotSavedPars(1);
+	CardTwelve::SetHaveNotSavedPars(1);
+	CardThirteen::SetHaveNotSavedPars(1);
+}
 
 Grid::~Grid()
 {

@@ -7,6 +7,7 @@ public:
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); // Applies the effect of CardSix on the passed Player
 	
+	virtual void Save(ofstream&);
 
 	virtual ~CardSix(); // A Virtual Destructor
 };

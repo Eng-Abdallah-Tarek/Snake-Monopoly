@@ -1,6 +1,7 @@
 #include "CardTwo.h"
-CardTwo::CardTwo(const CellPosition& pos) : Card(pos) // set the cell position of the card
+CardTwo::CardTwo(const CellPosition& pos, int WA ) : Card(pos) // set the cell position of the card
 {
+	walletAmount = WA;
 	cardNumber = 2; // set the inherited cardNumber data member with the card number (2 here)
 }
 
@@ -56,5 +57,11 @@ void CardTwo::Apply(Grid* pGrid, Player* pPlayer)
 	Card::Apply(pGrid, pPlayer);
 	// 2- increment the wallet of pPlayer by the walletAmount data member of CardOne
 	pPlayer->SetWallet((pPlayer->GetWallet()) + walletAmount);
+}
+
+void CardTwo::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << walletAmount << '\n';
 }
 

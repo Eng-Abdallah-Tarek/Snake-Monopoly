@@ -20,16 +20,25 @@ bool AddLadderAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	
-	pManager->SetUpdateCond(true); //this function reset the state of updating to true for more optimization
-
 	// Read the startPos parameter
 	pOut->PrintMessage("New Ladder: Click on its Start Cell ...");
 	startPos = pIn->GetCellClicked();
 
 	if (startPos.VCell() == -1 || startPos.HCell() == -1)
 	{
-		pOut->PrintMessage("Please, click in the Grid Area on a Cell to select the cell you want!");
+		pGrid->PrintErrorMessage("Adding Ladder is Cancelled : You didn't click on a cell ! Click to continue...");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
+	else if (startPos.GetCellNum() == 1)
+	{
+		pGrid->PrintErrorMessage("Adding Ladder is Cancelled : Ladder can't start at the First Cell ! Click to continue...");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
+	else if (startPos.VCell() == 0)
+	{
+		pGrid->PrintErrorMessage("Adding Ladder is Cancelled : Ladder can't start at the Last Row ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
@@ -41,26 +50,26 @@ bool AddLadderAction::ReadActionParameters()
 	///TODO: Make the needed validations on the read parameters
 	if (endPos.VCell() == -1 || endPos.HCell() == -1)
 	{
-		pOut->PrintMessage("Ladder is Cancelled! Please, click in the Grid Area on the Cells to select the Cell you want!");
+		pGrid->PrintErrorMessage("Adding Ladder is Cancelled : You didn't click on a cell ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 
 	else if (startPos.HCell() != endPos.HCell())
 	{
-		pOut->PrintMessage("Ladder is Cancelled! The Ladder must be Vertical!");
+		pGrid->PrintErrorMessage("Ladder is Cancelled! The Ladder must be Vertical ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 	else if(startPos.VCell() < endPos.VCell())
 	{	
-		pOut->PrintMessage("Ladder is Cancelled! The Ladder must be drawn from bottom to top!");
+		pGrid->PrintErrorMessage("Ladder is Cancelled! The Ladder must be drawn from bottom to top ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}	
 	else if (startPos.VCell() == endPos.VCell()) //if it is the same cell nothing will be drawn!
 	{
-		pOut->PrintMessage("Ladder is Cancelled! The start Cell and End cell can't be the same Cell!");
+		pGrid->PrintErrorMessage("Ladder is Cancelled! The start Cell and End cell can't be the same Cell ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}

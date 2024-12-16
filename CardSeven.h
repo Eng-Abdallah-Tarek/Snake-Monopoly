@@ -9,7 +9,7 @@ public:
 
 	virtual void Apply(Grid* pGrid, Player* pPlayer); //Applies the effect of card 7 by giving the 
 	                                                  //player a second dice roll
-
+	virtual void Save(ofstream&);
 
 	virtual ~CardSeven(); // A Virtual Destructor
 };
