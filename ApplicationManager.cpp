@@ -14,7 +14,7 @@
 #include "ExitAction.h"
 #include "NewGameAction.h"
 #include "InputDiceValueAction.h"
-
+#include "SaveGridAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -134,7 +134,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case INPUT_DICE_VALUE:
 		pAct = new InputDiceValueAction(this);
 		break;
-
+	case SAVE_GRID:
+		pAct = new SaveGridAction(this);
+		break;
 
 	default:						//EMPTY,	 Empty Area in ToolBar (NOT inside any action icon)
 		SetUpdateCond(false);		//GRID_AREA, Inside Grid Area

@@ -1,4 +1,5 @@
 #include "Ladder.h"
+int Ladder::count = 0;
 #include"Snake.h"
 
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
@@ -7,7 +8,14 @@ Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPo
 	{
 		this->endCellPos = endCellPos;
 	}
+
+	count++;
 	///TODO: Do the needed validation
+}
+
+int Ladder::getCount()
+{
+	return count;
 }
 
 void Ladder::Draw(Output* pOut) const
@@ -95,6 +103,13 @@ CellPosition Ladder::GetEndPosition() const
 	return endCellPos;
 }
 
+void Ladder::Save (ofstream& file)
+{
+
+	file << position.GetCellNum() << ' ' << endCellPos.GetCellNum() << '\n';
+}
+
 Ladder::~Ladder()
 {
+	count--;
 }

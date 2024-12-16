@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include "Ladder.h"
+int Snake::count = 0;
 
 Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos) : GameObject(startCellPos)
 {
@@ -7,11 +8,17 @@ Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos) :
 	{
 		this->endCellPos = endCellPos;
 	}
+	count++;
 }
 
 void Snake::Draw(Output* pOut) const
 {
 	pOut->DrawSnake(position, endCellPos);
+}
+
+int Snake::getCount()
+{
+	return count;
 }
 
 bool Snake::IsOverlapping(GameObject* ObjectComparedWith, Grid* pGrid)const
@@ -80,6 +87,13 @@ CellPosition Snake::GetEndPosition() const
 	return endCellPos;
 }
 
+void Snake::Save(ofstream& file)
+{
+
+	file << position.GetCellNum() << ' ' << endCellPos.GetCellNum() << '\n';
+}
+
 Snake::~Snake()
 {
+	count--;
 }

@@ -10,6 +10,12 @@
 	 pPlayer->Move(pGrid, 0);
 	}
 
+ void CardEight::Save(ofstream& file)
+ {
+	 Card::Save(file);
+	 file << '\n';
+ }
+
  CardEight::~CardEight()
 	{
 

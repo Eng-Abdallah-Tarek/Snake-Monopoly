@@ -25,5 +25,10 @@ bool CardNine::ReadCardParameters(Grid* pGrid)  //returns false in the case that
 		return true;
 	}
 }
+void CardNine::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << moveto.GetCellNum() << '\n';
+}
 CardNine::~CardNine()
 { }

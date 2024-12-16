@@ -10,6 +10,11 @@ CardSeven::~CardSeven()
 {
 }
 
+void CardSeven::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << '\n';
+}
 void CardSeven::Apply(Grid* pGrid, Player* pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);

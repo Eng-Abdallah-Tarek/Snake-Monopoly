@@ -11,6 +11,12 @@ void CardSix::Apply(Grid* pGrid, Player* pPlayer)
 	int DiceValue = pPlayer->GetjustRolledDiceNum();
 	pPlayer->Move(pGrid, (DiceValue* -1));
 }
+
+void CardSix::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << '\n';
+}
 CardSix::~CardSix()
 {
 

@@ -44,4 +44,9 @@ enum ActionType // The actions supported (add more as needed)
 	STATUS 				// Inside StatusBar Area
 };
 
+enum GOType {
+	eLadder,
+	eSnake,
+	eCard
+};
 #endif

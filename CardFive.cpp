@@ -12,6 +12,12 @@ void CardFive::Apply(Grid* pGrid, Player* pPlayer)
 	pPlayer->Move(pGrid, DiceValue);
 }
 
+void CardFive::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << '\n';
+}
+
 CardFive::~CardFive()
 {
 

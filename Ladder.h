@@ -7,7 +7,7 @@ class Ladder :	public GameObject // inherited from GameObject
 	// Note: the "position" data member inherited from the GameObject class is used as the ladder's "Start Cell Position"
 
 	CellPosition endCellPos; // here is the ladder's End Cell Position
-
+	static int count;
 public:
 
 	Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos); // A constructor for initialization
@@ -19,6 +19,10 @@ public:
 	bool IsOverlapping(GameObject* newobj , Grid* pGrid) const;
 	
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
+
+	virtual void Save(ofstream&);
+
+	static int getCount();
 
 	virtual ~Ladder(); // Virtual destructor
 };
