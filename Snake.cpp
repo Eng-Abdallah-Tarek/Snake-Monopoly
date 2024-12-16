@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include "Ladder.h"
 int Snake::count = 0;
 
 Snake::Snake(const CellPosition& startCellPos, const CellPosition& endCellPos) : GameObject(startCellPos)
@@ -22,13 +23,13 @@ int Snake::getCount()
 
 bool Snake::IsOverlapping(GameObject* ObjectComparedWith, Grid* pGrid)const
 {
-	Snake* pLadder = dynamic_cast<Snake*>(ObjectComparedWith);
-	if (pLadder)
+	int start2 = position.VCell()
+		, end2 = endCellPos.VCell();
+
+	if (Snake* pSnake = dynamic_cast<Snake*>(ObjectComparedWith))
 	{
-		int start2 = position.VCell()
-			, end2 = endCellPos.VCell()
-			, start1 = (pLadder->GetPosition()).VCell()
-			, end1 = (pLadder->GetEndPosition()).VCell();
+			int start1 = (pSnake->GetPosition()).VCell()
+			, end1 = (pSnake->GetEndPosition()).VCell();
 		if (start2 > end1)
 			return false;
 		else if (end2 < start1)
@@ -49,6 +50,24 @@ bool Snake::IsOverlapping(GameObject* ObjectComparedWith, Grid* pGrid)const
 			return true;
 		}
 	}
+	else if (Ladder* pLadder=dynamic_cast<Ladder*>(ObjectComparedWith))
+	{
+		int start1 = (pLadder->GetPosition()).VCell()
+			, end1 = (pLadder->GetEndPosition()).VCell();
+
+		if (start1 == end2)
+		{
+			pGrid->PrintErrorMessage("The Start of a Ladder can't be Snake's Tail  , Click to continue ...");
+			return true;
+		}
+		else if (start2 == end1)
+		{
+			pGrid->PrintErrorMessage("The End of a Ladder can't be the Head of a Snake , Click to continue ...");
+			return true;
+		}
+		else
+			return false;  // The Snake Head isn't the Ladder's End
+	}					   // Snake's Tail isn't the Ladder's start
 
 	else                   // if the ObjectComparedWith is NULL (this isn't the case of testing OverLapping) 
 		return false;

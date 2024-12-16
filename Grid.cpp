@@ -79,20 +79,20 @@ void Grid::SetWithPos(CellPosition pos, GameObject* ptr)
 
 bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 {
-	if (pos.IsValidCell()) // Check if valid position
-	{
+	//if (pos.IsValidCell()) // Check if valid position
+	//{
 	GameObject* CellObject = CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 	if (!CellObject)  // the cell doesn't contain a game object
 		return false;	// do NOT add and return false
 	
-   if(!dynamic_cast<Card*>(CellObject))    // because in copying card there is two pointer that have the same address 
-	  delete CellObject;
+    
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
+	delete CellObject;
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	 //deleting the snake or ladder or card object 
 	
 		return true; //indication that this position really had game object and it was deleted
-	}
+	//}
 
 }
 GameObject* Grid::getgameobj(CellPosition c)
@@ -256,7 +256,7 @@ void Grid::UpdateInterface() const
 			if (i < MaxPlayerCount-1) // except the last player
 				playersInfo += ", ";
 		}
-		playersInfo += " | Curr = " + to_string(currPlayerNumber);
+		playersInfo += (" | Curr = " + to_string(currPlayerNumber));
 
 		pOut->PrintPlayersInfo(playersInfo);
 

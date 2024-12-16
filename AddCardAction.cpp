@@ -42,21 +42,27 @@ bool AddCardAction::ReadActionParameters()
 	pOut->PrintMessage("Entre the type card number........");
 	int number = pIn->GetInteger(pOut);
 	int x, y;
-	
-	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
-	pOut->PrintMessage("Add Card: Click on a Cell .......");
-	cardPosition =pIn->GetCellClicked();
-	
-	// 4- Make the needed validations on the read parameters
 	if (number > 13 || number < 1)
 	{
 		pGrid->PrintErrorMessage("Error: invalid card number ! Click to continue ...");
 		pManager->SetUpdateCond(false);
 		return false;
     }
+	
+	// 3- Read the "cardPosition" parameter (its cell position) and set its data member
+	pOut->PrintMessage("Add Card: Click on a Cell .......");
+	cardPosition =pIn->GetCellClicked();
+	
+	// 4- Make the needed validations on the read parameters
 	if (! cardPosition.IsValidCell())
 	{
 		pGrid->PrintErrorMessage("You didn't Click on a Cell ! Adding is Cancelled ! Click any where to continue ");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
+	else if (cardPosition.GetCellNum() == 1 || cardPosition.GetCellNum() == 99)
+	{
+		pGrid->PrintErrorMessage("First and Last cell can't have a Card ! Click any where to continue .... ");
 		pManager->SetUpdateCond(false);
 		return false;
 	}

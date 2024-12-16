@@ -9,7 +9,7 @@ DeleteObjectAction::~DeleteObjectAction()
 {	}
 bool DeleteObjectAction::ReadActionParameters()
 {
-	pManager->SetUpdateCond(true); //this function reset the state of updating to true for more optimization
+	
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
