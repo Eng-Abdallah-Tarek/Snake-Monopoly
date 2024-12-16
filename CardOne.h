@@ -12,7 +12,7 @@ class CardOne :	public Card
 	int walletAmount; // the wallet value to decrease from the player
 
 public:
-	CardOne(const CellPosition & pos); // A Constructor takes card position
+	CardOne(const CellPosition& pos, int = -1); // A Constructor takes card position
 	
 	virtual bool ReadCardParameters(Grid * pGrid); // Reads the parameters of CardOne which is: walletAmount
 

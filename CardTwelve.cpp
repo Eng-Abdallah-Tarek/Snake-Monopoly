@@ -4,10 +4,19 @@ Player* CardTwelve ::Owner = 0;
 int CardTwelve::Fees = -1;
 int CardTwelve::Price = -1;
 bool CardTwelve::HaveNotReadPars = 1;
+bool CardTwelve::HaveNotSavedPars = 1;
 
 CardTwelve::CardTwelve(const CellPosition& pos) : Card(pos)
 {
 	cardNumber = 12;
+}
+
+CardTwelve::CardTwelve(const CellPosition& pos, int price, int fee) : Card(pos)
+{
+	cardNumber = 12;
+	Price = price;
+	Fees = fee;
+	HaveNotReadPars = 0;
 }
 
 CardTwelve::~CardTwelve()
@@ -17,6 +26,11 @@ CardTwelve::~CardTwelve()
 void CardTwelve::RemoveOwner()
 {
 	Owner = 0;
+}
+
+void CardTwelve::SetHaveNotSavedPars(bool par)
+{
+	HaveNotSavedPars = par;
 }
 
 bool CardTwelve::ReadCardParameters(Grid* pGrid)
@@ -77,5 +91,10 @@ void CardTwelve::Apply(Grid* pGrid, Player* pPlayer)
 void CardTwelve::Save(ofstream& file)
 {
 	Card::Save(file);
-	file << Price << ' ' << Fees << '\n';
+	if(HaveNotSavedPars)
+	{
+		file << Price << ' ' << Fees;
+		HaveNotSavedPars = 0;
+	}
+	file << '\n';
 }
