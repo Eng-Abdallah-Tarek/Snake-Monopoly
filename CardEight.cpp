@@ -6,6 +6,7 @@
 
  void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	{
+	 Card::Apply(pGrid, pPlayer);
 	 pPlayer->Move(pGrid, 0);
 	}
 

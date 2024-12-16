@@ -5,6 +5,7 @@ CardNine::CardNine(const CellPosition& cardpostion):Card(cardpostion)
 }
 void CardNine::Apply(Grid* pGrid, Player* pPlayer)
 { 
+	Card::Apply(pGrid, pPlayer);
 	int dicevalue = moveto.GetCellNum() - position.GetCellNum() ;
 	pPlayer->Move(pGrid, dicevalue);
 }

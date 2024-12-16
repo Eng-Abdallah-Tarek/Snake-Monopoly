@@ -5,8 +5,7 @@ class EditCardAction : public Action
 
 	CellPosition cellpos;
 	Card* ptr;
-	Cell* c;
-	int num;
+	
 public:
 	EditCardAction(ApplicationManager* pApp); // A Constructor
 

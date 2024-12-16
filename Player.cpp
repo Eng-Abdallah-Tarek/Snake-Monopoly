@@ -99,9 +99,14 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	}
 	CellPosition pos = pCell->GetCellPosition();
 	justRolledDiceNum = diceNumber;
+
 	pGrid->UpdatePlayerCell( this, pos.AddCellNum(justRolledDiceNum));
-	if(pCell->GetGameObject()) pCell->GetGameObject()->Apply(pGrid, this);
-	if (pos.GetCellNum() == 99) pGrid->SetEndGame(1);
+
+	if(pCell->GetGameObject())
+		pCell->GetGameObject()->Apply(pGrid, this);
+
+	if (pos.GetCellNum() == 99) 
+		pGrid->SetEndGame(1);
 }
 void Player::AppendPlayerInfo(string & playersInfo) const
 {

@@ -2,15 +2,14 @@
 
 #include "UI_Info.h"
 #include "DEFS.h"
-
 #include "Input.h"
 #include "Output.h"
 #include "CellPosition.h"
-
 // forward declarations (the includes are in the cpp)
 class Cell;
 class GameObject;
 class Ladder;
+class Snake;
 class Card;
 class Player;
 
@@ -45,10 +44,10 @@ public:
 	bool RemoveObjectFromCell(const CellPosition & pos); // Removes the GameObject of the Cell of the passed "position"
 	
 	GameObject* getgameobj(CellPosition c);
-	void Helperfun(CellPosition pos, GameObject* ptr);
+	void SetWithPos(CellPosition pos, GameObject* ptr);
 	void UpdatePlayerCell(Player * player, const CellPosition & newPosition); // Update the player's pCell with the CellList's Cell pointer of the "newPosition",
 	                                                                          // Clears the player's circle from the previous cell
-	    																	  // and  Draws it in the new cell
+	  																	  // and  Draws it in the new cell
 
 	// ========= Setters and Getters Functions =========
 
@@ -70,8 +69,10 @@ public:
 	// ========= Other Getters =========
 	
 	Player * GetCurrentPlayer() const;	// Gets a Pointer to the Current Player	                                    
-	Ladder * GetNextLadder(const CellPosition & position);  // Gets a Pointer to the first Ladder after the passed "position"
-
+	Ladder * GetNextLadder(const CellPosition & position);	// Gets a Pointer to the first Ladder after the passed "position"
+	
+	Snake * GetNextSnake(const CellPosition& position);
+	
 	// ========= Overlapping Checking =========
 	bool IsOverlapping(GameObject* newobj);
 

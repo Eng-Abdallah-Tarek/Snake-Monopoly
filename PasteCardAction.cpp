@@ -63,63 +63,62 @@ void PasteCardAction::Execute()
 			return;
 		}
 		int nun = pCard->GetCardNumber();
-		pCard->change(cellpos);
+		
 		switch (nun)
 		{
 		case 1:
-			pCard = new CardOne(cellpos);
+			pCard = new CardOne(*dynamic_cast<CardOne*>(pCard));
 			break;
 
 		case 2:
-			pCard = new CardTwo(cellpos);
+			pCard = new CardTwo(*dynamic_cast<CardTwo*>(pCard));
 			break;
 
 		case 3:
-			pCard = new CardThree(cellpos);
+			pCard = new CardThree(*dynamic_cast<CardThree*>(pCard));
 			break;
 
 		case 4:
 
-			pCard = new CardFour(cellpos);
+			pCard = new CardFour(*dynamic_cast<CardFour*>(pCard));
 			break;
 
 		case 5:
-			pCard = new CardFive(cellpos);
+			pCard = new CardFive(*dynamic_cast<CardFive*>(pCard));
 			break;
 
 		case 6:
-			pCard = new CardSix(cellpos);
+			pCard = new CardSix(*dynamic_cast<CardSix*>(pCard));
 			break;
 		case 7:
-			pCard = new CardSeven(cellpos);
+			pCard = new CardSeven(*dynamic_cast<CardSeven*>(pCard));
 			break;
 		case 8:
-			pCard = new CardEight(cellpos);
+			pCard = new CardEight(*dynamic_cast<CardEight*>(pCard));
 			break;
-			/*case 9:
-					pCard = new CardNine(cardPosition);
-				break;*/
+			case 9:
+					pCard = new CardNine(*dynamic_cast<CardNine*>(pCard));
+				break;
 		case 10:
-			pCard = new CardTen(cellpos);
+			pCard = new CardTen(*dynamic_cast<CardTen*>(pCard));
 			break;
 
 		case 11:
-			pCard = new CardEleven(cellpos);
+			pCard = new CardEleven(*dynamic_cast<CardEleven*>(pCard));
 			break;
 
 		case 12:
-			pCard = new CardTwelve(cellpos);
+			pCard = new CardTwelve(*dynamic_cast<CardTwelve*>(pCard));
 			break;
 
 		case 13:
-			pCard = new CardThirteen(cellpos);
+			pCard = new CardThirteen(*dynamic_cast<CardThirteen*>(pCard));
 			break;
-		default:
-			return;
+		
 		}
-	  
-		pGrid->Helperfun(cellpos, pCard);
-		//pGrid->SetClipboard(NULL);
+		pCard->change(cellpos);
+		pGrid->SetWithPos(cellpos, pCard);
+		
 	}
 	return;
 }
