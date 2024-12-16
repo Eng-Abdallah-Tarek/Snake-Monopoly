@@ -68,7 +68,7 @@ bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 	if (!CellObject)  // the cell doesn't contain a game object
 		return false;	// do NOT add and return false
 	
-   if(!dynamic_cast<Card*>(CellObject))    // because in copying card there is two pointer that have the same address 
+     
 	  delete CellObject;
 		// Note: you can deallocate the object here before setting the pointer to null if it is needed
 	CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
