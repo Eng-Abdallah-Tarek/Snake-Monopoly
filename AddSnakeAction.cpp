@@ -18,19 +18,28 @@ bool AddSnakeAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 
 
-	pManager->SetUpdateCond(true); //this function reset the state of updating to true for more optimization
-
 	// Read the startPos parameter
 	pOut->PrintMessage("New Snake: Click on its Start Cell ...");
 	startPos = pIn->GetCellClicked();
 
 	if (startPos.VCell() == -1 || startPos.HCell() == -1)
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled ! Click in the Grid Area on a Cell to select the cell you want !");
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled : You didn't click on a cell ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
-
+	else if (startPos.GetCellNum() == 99)
+	{
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled : Snake can't start at the Last Cell ! Click to continue...");
+		pManager->SetUpdateCond(false);
+		return false;
+	}
+	else if (startPos.VCell() == 8)
+	{
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled : Snake can't start at the first Row ! Click to continue...");
+			pManager->SetUpdateCond(false);
+			return false;
+	}
 	// Read the endPos parameter
 	pOut->PrintMessage("New Snake: Click on its End Cell ...");
 	endPos = pIn->GetCellClicked();
@@ -38,27 +47,27 @@ bool AddSnakeAction::ReadActionParameters()
 	///TODO: Make the needed validations on the read parameters
 	if (endPos.VCell() == -1 || endPos.HCell() == -1)
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled ! Click in the Grid Area on the Cells to select the Cell you want !");
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled : You didn't click on a cell ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 
 	else if (startPos.HCell() != endPos.HCell())
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled ! The Snake must be Vertical !");
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled ! The Snake must be Vertical ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 
 	else if (startPos.VCell() > endPos.VCell())
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled ! The Snake must be drawn from top to bottom !");
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled ! The Snake must be drawn from top to bottom ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}
 	else if (startPos.VCell() == endPos.VCell()) //if it is the same cell nothing will be drawn!
 	{
-		pOut->PrintMessage("Adding Snake is Cancelled ! The start Cell and End cell can't be the same Cell!");
+		pGrid->PrintErrorMessage("Adding Snake is Cancelled ! The start Cell and End cell can't be the same Cell ! Click to continue...");
 		pManager->SetUpdateCond(false);
 		return false;
 	}

@@ -1,4 +1,5 @@
 #include "Ladder.h"
+#include"Snake.h"
 
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
@@ -30,15 +31,21 @@ void Ladder::Apply(Grid* pGrid, Player* pPlayer)
 	//    Review the "pGrid" functions and decide which function can be used for that
 	
 }
-bool Ladder::IsOverlapping(GameObject* ObjectComparedWith , Grid* pGrid) const
+bool Ladder::IsOverlapping(GameObject* ObjectComparedWith , Grid* pGrid) const	
 {
-	Ladder* pLadder=dynamic_cast<Ladder*>(ObjectComparedWith);
-	if (pLadder)
+	/*
+	1 ==> is the first thing drawn which might be snake , ladder , card or none
+	2 ==> is the second thing drawn which is Ladder 
+ 
+	*/
+	int start2 = position.VCell()
+		, end2 = endCellPos.VCell();
+
+	if (Ladder* pLadder = dynamic_cast<Ladder*>(ObjectComparedWith))
 	{
-		int start2 = position.VCell()
-			, end2 = endCellPos.VCell()
-			, start1 = (pLadder->GetPosition()).VCell()
+		int start1 = (pLadder->GetPosition()).VCell()
 			, end1 = (pLadder->GetEndPosition()).VCell();
+
 		if (start2 < end1)
 			return false;
 		else if (end2 > start1)
@@ -53,15 +60,33 @@ bool Ladder::IsOverlapping(GameObject* ObjectComparedWith , Grid* pGrid) const
 			pGrid->PrintErrorMessage("The Start of a Ladder can't be the End of another Ladder , Click to continue ...");
 			return true;
 		}
-		else 
+		else
 		{
 			pGrid->PrintErrorMessage("Two Ladders Can't Overlap , Click to continue ...");
 			return true;
 		}
 	}
+	else if (Snake* pSnake = dynamic_cast<Snake*>(ObjectComparedWith))
+	{
+		int start1 = (pSnake->GetPosition()).VCell()
+			, end1 = (pSnake->GetEndPosition()).VCell();
 
-	else                   // if the ObjectComparedWith is NULL (this isn't the case of testing OverLapping) 
-		return false;
+		if (start1 == end2)
+		{
+			pGrid->PrintErrorMessage("The Head of a Snake can't be The End of a Ladder , Click to continue ...");
+			return true;
+		}
+		else if (start2 == end1)
+		{
+			pGrid->PrintErrorMessage("Snake's Tail can't be the Start of a Ladder , Click to continue ...");
+			return true;
+		}
+		else
+			return false;  // The Snake Head isn't the Ladder's End 
+	}					   // Snake's Tail isn't the Ladder's start 
+	else
+		return false; // if the ObjectComparedWith is NULL (this isn't the case of testing OverLapping) 
+		
 }
 
 

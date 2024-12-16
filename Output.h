@@ -54,7 +54,7 @@ public:
 	void PrintMessage(string msg) const;	// Prints a message on Status bar
 
 	///TODO: COMPLETE THE IMPLEMENTATIN OF THE FOLLOWING FUNCTION
-	void PrintPlayersInfo(string info);		// Prints players' info on the right-side of the toolbar
+	void PrintPlayersInfo(const string& info);		// Prints players' info on the right-side of the toolbar
 
 	// ========== Game Drawing Functions ==========
 

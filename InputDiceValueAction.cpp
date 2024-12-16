@@ -17,10 +17,18 @@ bool InputDiceValueAction::ReadActionParameters()
 {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
-	pOut->PrintMessage("please enter a dice value between 1-6");
+	pOut->PrintMessage("Enter a dice value between 1-6");
 	int temp = pGrid->GetInput()->GetInteger(pOut);
-	if (temp < 1 || temp > 6) {
-		pGrid->PrintErrorMessage("Error: The input value must be an integer between 1-6, Click to continue...");
+	if(temp==-1)
+	{
+		pGrid->PrintErrorMessage("You can only enter an integer form 1 to 6 , Click to continue...");
+		pManager->SetUpdateCond(false);
+		return 0;
+	}
+	else if (temp < 1 || temp > 6)
+	{
+		pGrid->PrintErrorMessage("You can only enter an integer form 1 to 6 , Click to continue...");
+		pManager->SetUpdateCond(false);
 		return 0;
 	}
 	else
@@ -38,7 +46,7 @@ void InputDiceValueAction::Execute()
 	{
 		Grid* pGrid = pManager->GetGrid();
 		if (pGrid->GetEndGame()) {
-			pGrid->PrintErrorMessage("The game is over! Click anywhere to continue...");
+			pGrid->PrintErrorMessage(" Game Over ! Click anywhere to continue...");
 		}
 		else {
 			pGrid->GetCurrentPlayer()->Move(pGrid, InputValue);

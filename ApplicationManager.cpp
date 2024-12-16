@@ -60,6 +60,7 @@ void ApplicationManager::UpdateInterface() const
 ActionType ApplicationManager::GetUserAction() const
 {
 	// Ask the input to get the action from the user.
+	pOut->PrintMessage("---  Select an Icon  ---");
 	return pIn->GetUserAction();
 
 }
@@ -71,7 +72,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 {
 	Action* pAct = NULL;
 	SetUpdateCond(true);
-	 //CHECK THIS IN CODE REVISING 
 
 	// According to Action Type, create the corresponding action object
 	switch (ActType)
@@ -106,11 +106,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// create an object of AddCardAction here
 		pAct = new EditCardAction(this);
 		break;
+
 	case EXIT:
 	case eXIT:
 		pAct = new ExitAction(this);
 		break;
-
 	
 	case TO_PLAY_MODE:
 		pAct = new SwitchToPlayModeAction(this); // temporary till you made its action class (CHANGE THIS LATTER)
@@ -126,7 +126,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 		
-
 		///TODO: Add a case for EACH Action type in the Design mode or Play mode
 	case NEW_GAME:
 		pAct = new NewGameAction(this);
@@ -137,8 +136,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 
-	case STATUS:	// a click on the status bar ==> no action
-		return;
+	default:						//EMPTY,	 Empty Area in ToolBar (NOT inside any action icon)
+		SetUpdateCond(false);		//GRID_AREA, Inside Grid Area
+		break;						//STATUS 	 Inside StatusBar Area
 	}
 
 	// Execute the created action
