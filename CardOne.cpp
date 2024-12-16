@@ -1,6 +1,7 @@
 #include "CardOne.h"
-CardOne::CardOne(const CellPosition & pos) : Card(pos) // set the cell position of the card
+CardOne::CardOne(const CellPosition& pos, int WA) : Card(pos) // set the cell position of the card
 {
+	walletAmount = WA;
 	cardNumber = 1; // set the inherited cardNumber data member with the card number (1 here)
 }
 

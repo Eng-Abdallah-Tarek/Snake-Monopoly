@@ -9,7 +9,7 @@ class CardTwo : public Card
 	// CardTwo Parameters:
 	int walletAmount; // the wallet value to increase to the player
 public:
-	CardTwo(const CellPosition& pos); // A Constructor takes card position
+	CardTwo(const CellPosition& pos, int = -1); // A Constructor takes card position
 
 	virtual bool ReadCardParameters(Grid* pGrid); // Reads the parameters of CardOne which is: walletAmount
 

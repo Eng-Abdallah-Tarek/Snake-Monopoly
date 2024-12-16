@@ -15,6 +15,7 @@
 #include "NewGameAction.h"
 #include "InputDiceValueAction.h"
 #include "SaveGridAction.h"
+#include "OpenGridAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -136,6 +137,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case SAVE_GRID:
 		pAct = new SaveGridAction(this);
+		break;
+	case OPEN_GRID:
+		pAct = new OpenGridAction(this);
 		break;
 
 	default:						//EMPTY,	 Empty Area in ToolBar (NOT inside any action icon)

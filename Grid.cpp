@@ -6,6 +6,11 @@
 #include "Card.h"
 #include "Player.h"
 #include <fstream>
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+using namespace std;
 Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
@@ -52,6 +57,17 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(pNewObject);
 		return true; // indicating that addition is done
 	
+}
+
+void Grid::RemoveAllObjects()
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--) 
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) 
+		{
+			CellList[i][j]->SetGameObject(0);
+		}
+	}
 }
 void Grid::SetWithPos(CellPosition pos, GameObject* ptr)
 {
@@ -290,6 +306,10 @@ void Grid::SaveAll(ofstream& file)
 				CellList[i][j]->GetGameObject()->Save(file);
 		}
 	}
+	CardTen::SetHaveNotSavedPars(1);
+	CardEleven::SetHaveNotSavedPars(1);
+	CardTwelve::SetHaveNotSavedPars(1);
+	CardThirteen::SetHaveNotSavedPars(1);
 }
 
 Grid::~Grid()

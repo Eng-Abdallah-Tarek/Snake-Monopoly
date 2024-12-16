@@ -15,14 +15,18 @@ bool SaveGridAction::ReadActionParameters()
 {
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
-	pOut->PrintMessage("Enter the name of the file to save to: ");
+	pOut->PrintMessage("Enter the name of the txt file to save to: ");
 	FileName = pGrid->GetInput()->GetSrting(pOut)+".txt";
+	pOut->ClearStatusBar();
 	return 1;
 }
 
 void SaveGridAction::Execute()
 {
+	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
 	ofstream file(FileName);
-	pManager->GetGrid()->SaveAll(file);
+	pGrid->SaveAll(file);
+	file.close();
+	pGrid->PrintErrorMessage("Saved! Click to continue...");
 }
