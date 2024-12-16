@@ -5,6 +5,7 @@
 #include "Ladder.h"
 #include "Card.h"
 #include "Player.h"
+#include <fstream>
 Grid::Grid(Input * pIn, Output * pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
 	// Allocate the Cell Objects of the CellList
@@ -114,7 +115,7 @@ Output * Grid::GetOutput() const
 	return pOut;
 }
 
-void Grid::SetClipboard(Card * pCard) // to be used in copy/cut
+void Grid::SetClipboard(Card* pCard) // to be used in copy/cut
 {
 	// you may update slightly in implementation if you want (but without breaking responsibilities)
 	Clipboard = pCard;
@@ -257,6 +258,36 @@ void Grid::PrintErrorMessage(string msg)
 	pOut->ClearStatusBar();
 }
 
+void Grid::SaveAll(ofstream& file)
+{
+	file << Ladder::getCount() << '\n';
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (dynamic_cast<Ladder*>(CellList[i][j]->GetGameObject()))
+				CellList[i][j]->GetGameObject()->Save(file);
+		}
+	}
+	file << Snake::getCount() << '\n';
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (dynamic_cast<Snake*>(CellList[i][j]->GetGameObject()))
+				CellList[i][j]->GetGameObject()->Save(file);
+		}
+	}
+	file << Card::getCount() << '\n';
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (dynamic_cast<Card*>(CellList[i][j]->GetGameObject()))
+				CellList[i][j]->GetGameObject()->Save(file);
+		}
+	}
+}
 
 Grid::~Grid()
 {

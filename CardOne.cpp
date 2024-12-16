@@ -45,6 +45,12 @@ bool CardOne::ReadCardParameters(Grid * pGrid)
 	return true;
 }
 
+void CardOne::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << walletAmount << '\n';
+}
+
 void CardOne::Apply(Grid* pGrid, Player* pPlayer)
 {
 		

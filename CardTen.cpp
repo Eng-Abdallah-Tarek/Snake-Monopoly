@@ -73,3 +73,9 @@ void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 
 	}
 }
+
+void CardTen::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << Price << ' ' << Fees << '\n';
+}

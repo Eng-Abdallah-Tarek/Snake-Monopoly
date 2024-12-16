@@ -27,3 +27,9 @@ void CardThree::Apply(Grid* pGrid, Player* pPlayer)
 		
 	}
 }
+
+void CardThree::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << '\n';
+}

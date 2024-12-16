@@ -14,7 +14,7 @@
 #include "ExitAction.h"
 #include "NewGameAction.h"
 #include "InputDiceValueAction.h"
-
+#include "SaveGridAction.h"
 
 ///TODO: Add #include for all action types
 
@@ -135,7 +135,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case INPUT_DICE_VALUE:
 		pAct = new InputDiceValueAction(this);
 		break;
-
+	case SAVE_GRID:
+		pAct = new SaveGridAction(this);
+		break;
 
 	case STATUS:	// a click on the status bar ==> no action
 		return;

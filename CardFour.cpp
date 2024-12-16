@@ -28,3 +28,9 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	// 
 	//}
 }
+
+void CardFour::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << '\n';
+}

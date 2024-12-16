@@ -14,6 +14,8 @@ public:
 
     static void RemoveOwner();
 
+    virtual void Save(ofstream&);
+
     virtual void Apply(Grid* pGrid, Player* pPlayer);
 
     ~CardThirteen();

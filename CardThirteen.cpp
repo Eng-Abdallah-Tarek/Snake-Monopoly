@@ -72,3 +72,9 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 
 	}
 }
+
+void CardThirteen::Save(ofstream& file)
+{
+	Card::Save(file);
+	file << Price << ' ' << Fees << '\n';
+}

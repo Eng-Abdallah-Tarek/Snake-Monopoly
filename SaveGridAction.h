@@ -3,6 +3,7 @@
 class SaveGridAction :
     public Action
 {
+    string FileName;
 
 public:
     SaveGridAction(ApplicationManager* pApp);
