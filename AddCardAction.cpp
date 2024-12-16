@@ -113,13 +113,13 @@ void AddCardAction::Execute()
 			pCard = new CardSix(cardPosition);
 			break;
 		case 7:
-				pCard = new CardSeven(cardPosition);
+			pCard = new CardSeven(cardPosition);
 			break;
 		case 8:
 			pCard = new CardEight(cardPosition);
 			break;
 		case 9:
-				pCard = new CardNine(cardPosition);
+			pCard = new CardNine(cardPosition);
 			break;
 		case 10:
 					pCard = new CardTen(cardPosition);
@@ -157,9 +157,15 @@ void AddCardAction::Execute()
 				{
 					// Print an appropriate message
 					pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+					delete pCard;
 					return;
 				}
 				// D- if the GameObject cannot be added in the Cell, Print the appropriate error message on statusbar
+			}
+			else // if card parameters weren't valid
+			{
+				delete pCard;
+				return;
 			}
 		}
 
