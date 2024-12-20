@@ -16,7 +16,7 @@ bool CutCardAction::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Click on the card cell that you want to cut......");
+	pOut->PrintMessage("Click on the card cell from which you want to cut......");
 	cellpos = pIn->GetCellClicked();
 	 if (!cellpos.IsValidCell())
 	 {
