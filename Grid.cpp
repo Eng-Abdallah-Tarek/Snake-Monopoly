@@ -98,7 +98,10 @@ bool Grid::RemoveObjectFromCell(const CellPosition & pos)
 GameObject* Grid::getgameobj(CellPosition c)
 {
 	if(CellList[c.VCell()][c.HCell()]->GetGameObject())
+
 	return CellList[c.VCell()][c.HCell()]->GetGameObject();
+
+	else 
 
 	return NULL;
 }
