@@ -42,6 +42,12 @@ GameObject * Cell::GetGameObject() const
 	return pGameObject;
 }
 
+void Cell::DelGO()
+{
+	delete pGameObject;
+	pGameObject = 0;
+}
+
 Ladder * Cell::HasLadder() const
 {
 	return dynamic_cast<Ladder *>(pGameObject);

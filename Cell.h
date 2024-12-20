@@ -38,7 +38,8 @@ public:
 	Ladder * HasLadder() const;	// Checks if pGameObject is a Ladder Then returns it if a ladder or returns NULL if not ladder
 	Snake * HasSnake() const;	// Checks if pGameObject is a Snake Then returns it if a snake or returns NULL if not snake
 	Card * HasCard() const;	    // Checks if pGameObject is a Card Then returns it if a card or returns NULL if not card
-	
+	void DelGO(); /* By Ziad : Be Careful when using this function!it deletes the game object pointed to by
+pGameObject blindly. So, Do your validation first. */
 	// ======= Drawing Functions ======= 
 
 	void DrawCellOrCard(Output* pOut) const;	// Draws the Cell either has Card or No Card (No ladders/snakes are drawn here)

@@ -17,7 +17,7 @@ bool EditCardAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 	ptr = NULL;
-	pOut->PrintMessage("Click on the card cell that you want to edit......");
+	pOut->PrintMessage("Click on the cell with the card you want to edit......");
 	cellpos = pIn->GetCellClicked();
 	if (!cellpos.IsValidCell())
 	{
@@ -39,7 +39,7 @@ bool EditCardAction::ReadActionParameters()
 			return true;
 		}
 	}
-	pGrid->PrintErrorMessage("Error: this Cell  hasn't a card to edit ! Click to continue ...");
+	pGrid->PrintErrorMessage("Error: this Cell  doesn't have a card to edit ! Click to continue ...");
 	pManager->SetUpdateCond(false);
 	return false;
 }

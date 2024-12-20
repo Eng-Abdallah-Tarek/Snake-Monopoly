@@ -61,11 +61,14 @@ bool Grid::AddObjectToCell(GameObject * pNewObject )  // think if any validation
 
 void Grid::RemoveAllObjects()
 {
-	for (int i = NumVerticalCells - 1; i >= 0; i--) 
+
+
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
 	{
-		for (int j = 0; j < NumHorizontalCells; j++) 
+		for (int j = 0; j < NumHorizontalCells; j++)
 		{
-			CellList[i][j]->SetGameObject(0);
+			if (CellList[i][j]->GetGameObject())
+				CellList[i][j]->DelGO();
 		}
 	}
 }

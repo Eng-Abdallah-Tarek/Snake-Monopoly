@@ -25,8 +25,13 @@ void SaveGridAction::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
 	ReadActionParameters();
-	ofstream file(FileName);
-	pGrid->SaveAll(file);
-	file.close();
-	pGrid->PrintErrorMessage("Saved! Click to continue...");
+	ofstream file;
+	file.open(FileName);
+	if (file.is_open()) {
+		pGrid->SaveAll(file);
+		file.close();
+		pGrid->PrintErrorMessage("Saved! Click to continue...");
+	}
+	else
+		pGrid->PrintErrorMessage("Error: File can't be opened. Click to continue...");
 }

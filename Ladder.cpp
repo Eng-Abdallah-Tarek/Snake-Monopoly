@@ -1,6 +1,6 @@
 #include "Ladder.h"
-int Ladder::count = 0;
 #include"Snake.h"
+int Ladder::count = 0;
 
 Ladder::Ladder(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
