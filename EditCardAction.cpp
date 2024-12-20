@@ -53,7 +53,7 @@ bool EditCardAction::ReadActionParameters()
 			return true;
 		}
 	}
-	pGrid->PrintErrorMessage("Error: this Cell  doesn't have a card to edit ! Click to continue ...");
+	pGrid->PrintErrorMessage("Error: this Cell  doesn't have an editable card ! Click to continue ...");
 	pManager->SetUpdateCond(false);
 	return false;
 }
