@@ -18,7 +18,7 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 	Cell* cell = pPlayer->GetCell();
 	const  CellPosition c1 = cell->GetCellPosition();
 	Snake* s = pGrid->GetNextSnake(c1);                      
-	((GameObject*)s)->GetPosition();
+	//((GameObject*)s)->GetPosition();
 	if (s)
 	{
 	 const  CellPosition c2 = s->GetPosition();
