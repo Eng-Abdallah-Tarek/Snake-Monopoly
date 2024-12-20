@@ -17,16 +17,16 @@ void CardFour::Apply(Grid* pGrid, Player* pPlayer)
 
 	Cell* cell = pPlayer->GetCell();
 	const  CellPosition c1 = cell->GetCellPosition();
-	//Snake* s = pGrid->GetNextSnake(c1);                      // must first added from them
-	//((GameObject*)s)->GetPosition();
-	//if (s)
-	//{
-	// //const  CellPosition c2 = s->GetPosition();
-	//	int n2 = c2.GetCellNum();
-	//	int n1 = c1.GetCellNum();
-	//	pPlayer->Move(pGrid, n2 - n1);
-	// 
-	//}
+	Snake* s = pGrid->GetNextSnake(c1);                      
+	((GameObject*)s)->GetPosition();
+	if (s)
+	{
+	 const  CellPosition c2 = s->GetPosition();
+		int n2 = c2.GetCellNum();
+		int n1 = c1.GetCellNum();
+		pPlayer->Move(pGrid, n2 - n1);
+	 
+	}
 }
 
 void CardFour::Save(ofstream& file)

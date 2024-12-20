@@ -40,7 +40,7 @@ void DeleteObjectAction::Execute()
 		GameObject* pgame = pGrid->getgameobj(startPos);
 		if (dynamic_cast<Card*>(pgame))
 		{
-			pGrid->SetClipboard(NULL);
+			pGrid->SetClipboard(NULL);      // add by mahmoud to solve the last problem mentioned by ziad
 		}
 		bool removed = pGrid->RemoveObjectFromCell(startPos);
 		if (!removed) //if you didn't remove because there is no object
