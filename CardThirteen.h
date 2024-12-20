@@ -20,6 +20,8 @@ public:
 
     static void SetHaveNotSavedPars(bool);
 
+    static void SetHaveNotReadPars(bool);
+
     virtual void Apply(Grid* pGrid, Player* pPlayer);
 
     ~CardThirteen();

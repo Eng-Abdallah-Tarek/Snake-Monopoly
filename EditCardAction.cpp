@@ -1,6 +1,11 @@
 #include "EditCardAction.h"
 #include "Grid.h"
 #include "Card.h"
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
+
 
 EditCardAction::EditCardAction(ApplicationManager* pApp) : Action(pApp)
 {
@@ -32,9 +37,18 @@ bool EditCardAction::ReadActionParameters()
 		ptr = dynamic_cast<Card*>(pgame);
 		int i = ptr->GetCardNumber();
 
-		if (i == 1 || i == 2 || i == 9||i==10||i==11||i==12||i==13)
+		if (i == 1 || i == 2 || i == 9 || i == 10 || i == 11 || i == 12 || i == 13)
 		{
-			
+			switch (i) {
+			case 10:
+				CardTen::SetHaveNotReadPars(1); break;
+			case 11:
+				CardEleven::SetHaveNotReadPars(1); break;
+			case 12:
+				CardTwelve::SetHaveNotReadPars(1); break;
+			case 13:
+				CardThirteen::SetHaveNotReadPars(1); break;
+			}
 			pOut->ClearStatusBar();
 			return true;
 		}

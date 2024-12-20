@@ -28,6 +28,12 @@ void CardTen::SetHaveNotSavedPars(bool par)
 	HaveNotSavedPars = par;
 }
 
+
+void CardTen::SetHaveNotReadPars(bool par)
+{
+	HaveNotReadPars = par;
+}
+
  void CardTen::RemoveOwner()
 {
 	Owner = 0;

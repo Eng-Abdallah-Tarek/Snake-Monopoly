@@ -33,6 +33,11 @@ void CardTwelve::SetHaveNotSavedPars(bool par)
 	HaveNotSavedPars = par;
 }
 
+void CardTwelve::SetHaveNotReadPars(bool par)
+{
+	HaveNotReadPars = par;
+}
+
 bool CardTwelve::ReadCardParameters(Grid* pGrid)
 {
 	if (HaveNotReadPars)

@@ -34,6 +34,11 @@ void CardEleven::SetHaveNotSavedPars(bool par)
 	HaveNotSavedPars = par;
 }
 
+void CardEleven::SetHaveNotReadPars(bool par)
+{
+	HaveNotReadPars = par;
+}
+
 bool CardEleven::ReadCardParameters(Grid* pGrid)
 {
 	if (HaveNotReadPars)
