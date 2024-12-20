@@ -2,7 +2,8 @@
 
 #include"input.h"
 #include"output.h"
-#include"Grid.h"			//CHECK HOW TO AVOID THIS LATER
+#include"Grid.h"//CHECK HOW TO AVOID THIS LATER
+#include "Card.h"
 DeleteObjectAction::DeleteObjectAction(ApplicationManager* pApp):Action(pApp)
 { }
 DeleteObjectAction::~DeleteObjectAction()
@@ -36,8 +37,12 @@ void DeleteObjectAction::Execute()
 		Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
 
 		// Add the card object to the GameObject of its Cell:
+		GameObject* pgame = pGrid->getgameobj(startPos);
+		if (dynamic_cast<Card*>(pgame))
+		{
+			pGrid->SetClipboard(NULL);
+		}
 		bool removed = pGrid->RemoveObjectFromCell(startPos);
-		
 		if (!removed) //if you didn't remove because there is no object
 		{
 			// Print an appropriate message
