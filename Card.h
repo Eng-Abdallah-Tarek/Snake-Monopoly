@@ -27,6 +27,7 @@ public:
 	                                                   // It is a virtual function (implementation depends on Card Type)
 
 	virtual void Save(ofstream&);
+	static void Increment(); //By Ziad: never use this function, too dangerous.
 
 	static int getCount();
 	virtual ~Card(); // A Virtual Destructor
