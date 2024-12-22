@@ -287,7 +287,7 @@ void Grid::SaveAll(ofstream& file)
 	{
 		for (int j = 0; j < NumHorizontalCells; j++)
 		{
-			if (dynamic_cast<Ladder*>(CellList[i][j]->GetGameObject()))
+			if (CellList[i][j]->HasLadder())
 				CellList[i][j]->GetGameObject()->Save(file);
 		}
 	}
@@ -296,7 +296,7 @@ void Grid::SaveAll(ofstream& file)
 	{
 		for (int j = 0; j < NumHorizontalCells; j++)
 		{
-			if (dynamic_cast<Snake*>(CellList[i][j]->GetGameObject()))
+			if (CellList[i][j]->HasSnake())
 				CellList[i][j]->GetGameObject()->Save(file);
 		}
 	}
@@ -305,7 +305,7 @@ void Grid::SaveAll(ofstream& file)
 	{
 		for (int j = 0; j < NumHorizontalCells; j++)
 		{
-			if (dynamic_cast<Card*>(CellList[i][j]->GetGameObject()))
+			if (CellList[i][j]->HasCard())
 				CellList[i][j]->GetGameObject()->Save(file);
 		}
 	}

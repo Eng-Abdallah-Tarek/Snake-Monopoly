@@ -9,6 +9,7 @@ void CardFive::Apply(Grid* pGrid, Player* pPlayer)
 {
 	Card::Apply(pGrid, pPlayer);
 	int DiceValue =pPlayer->GetjustRolledDiceNum();
+	pPlayer->SetTurnCount(pPlayer->GetTurnCount() - 1);   //Turn count isn't considered with this motion by 1 !
 	pPlayer->Move(pGrid, DiceValue);
 }
 
