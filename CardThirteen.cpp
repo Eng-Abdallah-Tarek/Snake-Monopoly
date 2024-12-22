@@ -43,7 +43,6 @@ bool CardThirteen::ReadCardParameters(Grid* pGrid)
 	{
 		Output* pOut = pGrid->GetOutput();
 		Input* pIn = pGrid->GetInput();
-		HaveNotReadPars = 0;
 		pOut->PrintMessage("Card 13: Enter the station's price: ");
 		int temp = pIn->GetInteger(pOut);
 		if (temp < 0) {
@@ -58,15 +57,17 @@ bool CardThirteen::ReadCardParameters(Grid* pGrid)
 			return 0;
 		}
 		Fees = temp;
+		HaveNotReadPars = 0;
 		return 1;
 	}
-	return 1;
+	return 0;
 }
 
 void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 {
-	Card::Apply(pGrid, pPlayer);
+	
 	if (Owner) {
+		pGrid->PrintErrorMessage("You have reached a bought station fees will be deducted from your wallet . Click to continue ...");
 		pGrid->GetCurrentPlayer()->ChangeWallet(Fees, 0);
 		Owner->ChangeWallet(Fees, 1);
 	}
@@ -79,6 +80,7 @@ void CardThirteen::Apply(Grid* pGrid, Player* pPlayer)
 	again:
 		if (s == "Yes") {
 			Owner = pGrid->GetCurrentPlayer();
+			Owner->ChangeWallet(Price, 0);
 		}
 		else if (s == "No") {
 			return;

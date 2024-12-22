@@ -26,7 +26,7 @@ CardEleven::~CardEleven()
 
 void CardEleven::RemoveOwner()
 {
-	Owner = 0;
+	Owner = 0;	//NULL 
 }
 
 void CardEleven::SetHaveNotSavedPars(bool par)
@@ -45,7 +45,6 @@ bool CardEleven::ReadCardParameters(Grid* pGrid)
 	{
 		Output* pOut = pGrid->GetOutput();
 		Input* pIn = pGrid->GetInput();
-		HaveNotReadPars = 0;
 		pOut->PrintMessage("Card 11: Enter the station's price: ");
 		int temp = pIn->GetInteger(pOut);
 		if (temp < 0) {
@@ -59,16 +58,18 @@ bool CardEleven::ReadCardParameters(Grid* pGrid)
 			pGrid->PrintErrorMessage("Cancelled, the fees must be a positive integer. Click to continue...");
 			return 0;
 		}
+		HaveNotReadPars = 0;
 		Fees = temp;
 		return 1;
 	}
-	return 1;
+	return 0;
 }
 
 void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 {
-	Card::Apply(pGrid, pPlayer);
+	
 	if (Owner) {
+		pGrid->PrintErrorMessage("You have reached a bought station fees will be deducted from your wallet . Click to continue ...");
 		pGrid->GetCurrentPlayer()->ChangeWallet(Fees, 0);
 		Owner->ChangeWallet(Fees, 1);
 	}
@@ -81,6 +82,7 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 	again:
 		if (s == "Yes") {
 			Owner = pGrid->GetCurrentPlayer();
+			Owner->ChangeWallet(Price, 0);
 		}
 		else if (s == "No") {
 			return;
