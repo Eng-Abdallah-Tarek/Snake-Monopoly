@@ -1,4 +1,5 @@
 #include "Snake.h"
+#include "Player.h"
 #include "Ladder.h"
 int Snake::count = 0;
 
@@ -79,7 +80,11 @@ void Snake::Apply(Grid* pGrid, Player* pPlayer)
 {
 
 	pGrid->PrintErrorMessage("You have reached a snake. Click to continue ...");
-	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
+	//pGrid->UpdatePlayerCell(pPlayer, endCellPos);
+	pPlayer->SetTurnCount(pPlayer->GetTurnCount() - 1);			//I don't want ladders' motion to be counted as a turn so we decrement it
+	pPlayer->Move(pGrid, (endCellPos.GetCellNum() - position.GetCellNum()));	// This includes checking if the ladder made you reach the last cell and ended game or not 
+	// and this also checks if the ladder end has any cards
+
 }
 
 CellPosition Snake::GetEndPosition() const

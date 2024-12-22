@@ -57,6 +57,7 @@ bool CardTen::ReadCardParameters(Grid* pGrid)
 			pGrid->PrintErrorMessage("Cancelled, the fees must be a positive integer. Click to continue...");
 			return 0;
 		}
+		HaveNotReadPars = 0;
 		pOut->ClearStatusBar();
 		Fees = temp;
 		return 1;
@@ -67,20 +68,26 @@ return 1;
 
 void CardTen::Apply(Grid* pGrid, Player* pPlayer)
 {
-	Card::Apply( pGrid, pPlayer);
 	if (Owner) {
-		pGrid->GetCurrentPlayer()->ChangeWallet(Fees, 0);
-		Owner->ChangeWallet(Fees, 1);
+	pGrid->PrintErrorMessage("You have reached a bought station fees will be deducted from your wallet . Click to continue ...");
+	// What amount of money goes to owner when current player doesn't have enough money to pay the fees
+	int gained=Fees;
+
+	if (pPlayer->GetWallet() < Fees)
+		gained = pPlayer->GetWallet();
+
+	pPlayer->ChangeWallet(Fees, 0);
+		Owner->ChangeWallet(gained, 1);
 	}
 	else {
 		Output* pOut = pGrid->GetOutput();
 		Input* pIn = pGrid->GetInput();
 		pOut->PrintMessage("Vacant station reached. Would you like to buy it for " +
-			to_string(Price)+"coins? (type Yes or No): ");
+			to_string(Price)+" coins? (type Yes or No): ");
 		string s = pIn->GetSrting(pOut);
 		again:
 		if (s == "Yes") {
-			Player* pPlayer = pGrid->GetCurrentPlayer();;
+			Player* pPlayer = pGrid->GetCurrentPlayer();
 			if (pPlayer->GetWallet() < Price)
 				pGrid->PrintErrorMessage("You don't have enough coins. Click to continue...");
 			else {

@@ -7,7 +7,7 @@ Player::Player(Cell * Cell, int playerNum) :justRolledDiceNum(-1), stepCount(0),
 {
 	pCell = Cell;
 	turnCount = 0;
-	
+	prevented = false;
 	// Make all the needed initialization or validations
 }
 
@@ -32,6 +32,14 @@ void Player::SetWallet(int pwallet)
 {
 	wallet = (pwallet < 0) ? 0 : pwallet;
 	// Make any needed validations
+}
+bool Player::IsPrevented() const
+{
+	return prevented;
+}
+void Player::Setprevented(bool state)
+{
+	prevented = state;
 }
 
 int Player::GetWallet() const
@@ -92,21 +100,31 @@ void Player::Move(Grid* pGrid, int diceNumber)
 	// 6- Apply() the game object of the reached cell (if any)
 
 	// 7- Check if the player reached the end cell of the whole game, and if yes, Set end game with true: pGrid->SetEndGame(true)
-	if (++turnCount == 3) {
+	if (++turnCount >= 3) {
 		wallet += 10 * diceNumber;
-		turnCount = 0;
+		turnCount -= 3;
 		return;
 	}
+	
 	CellPosition pos = pCell->GetCellPosition();
 	justRolledDiceNum = diceNumber;
+
+	if (diceNumber + pos.GetCellNum() >= 99)  //the game ended
+	{
+		pos.SetHCell(10);
+		pos.SetVCell(0);
+		pGrid->UpdatePlayerCell(this, pos);
+		pGrid->SetEndGame(1);
+		pGrid->PrintErrorMessage("Congratulations ! Player No "+ to_string(this->playerNum)+" has Won (^_^)  ---- Click to continue.....");
+		return;
+	}
 
 	pGrid->UpdatePlayerCell( this, pos.AddCellNum(justRolledDiceNum));
 
 	if(pCell->GetGameObject())
 		pCell->GetGameObject()->Apply(pGrid, this);
 
-	if (pos.GetCellNum() == 99) 
-		pGrid->SetEndGame(1);
+	
 }
 void Player::AppendPlayerInfo(string & playersInfo) const
 {
@@ -115,9 +133,9 @@ void Player::AppendPlayerInfo(string & playersInfo) const
 	playersInfo += to_string(turnCount) + ")";
 }
 
-void Player::ChangeWallet(int val, bool op)
-{
-	if (op)
+void Player::ChangeWallet(int val, bool determine) // determine is a bool that determinates whether the 
+{													// changing of the wallet is for the owner or the player who passed on it
+	if (determine)
 		wallet += val;
 	else
 		wallet = (val > wallet) ? 0 : wallet - val;

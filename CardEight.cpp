@@ -7,7 +7,7 @@
  void CardEight::Apply(Grid* pGrid, Player* pPlayer)
 	{
 	 Card::Apply(pGrid, pPlayer);
-	 pPlayer->Move(pGrid, 0);
+	 pPlayer->Setprevented(true);
 	}
 
  void CardEight::Save(ofstream& file)

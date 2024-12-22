@@ -302,7 +302,7 @@ void Output::PrintPlayersInfo(const string& info)
 	int y = (UI.ToolBarHeight - h) / 2;
 
 	///TODO: Clear what was written on the toolbar
-	ClearToolBarForInfo(x,y,x+w+80, y+h);		//OLD::TO BE MODIFIED NEW::!!DONE
+	ClearToolBarForInfo(5*UI.CellWidth,0 ,UI.width, UI.ToolBarHeight);		//OLD::TO BE MODIFIED NEW::!!DONE
 
 
 	// Set the pen and font before drawing the string on the window

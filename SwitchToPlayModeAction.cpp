@@ -1,6 +1,10 @@
 #include "SwitchToPlayModeAction.h"
 #include "Grid.h"
 #include "Player.h"
+#include "CardTen.h"
+#include "CardEleven.h"
+#include "CardTwelve.h"
+#include "CardThirteen.h"
 SwitchToPlayModeAction::SwitchToPlayModeAction(ApplicationManager* pApp) : Action(pApp)
 {
 }
@@ -28,4 +32,8 @@ void SwitchToPlayModeAction::Execute()
 		pGrid->AdvanceCurrentPlayer();
 	}
 	pGrid->SetCurrentPlayer(0);
+	CardTen::RemoveOwner();
+	CardEleven::RemoveOwner();
+	CardTwelve::RemoveOwner();
+	CardThirteen::RemoveOwner();
 }
