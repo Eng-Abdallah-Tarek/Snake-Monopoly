@@ -109,7 +109,7 @@ void CutCardAction::Execute()
 
 		}
 		pGrid->SetClipboard(pCard);
-		pGrid->RemoveObjectFromCell(cellpos);		
+		pGrid->RemoveObjectFromCell(cellpos);
 	}
 	return;
 }

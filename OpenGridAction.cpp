@@ -37,7 +37,6 @@ bool OpenGridAction::ReadActionParameters()
 void OpenGridAction::Execute()
 {
 	Grid* pGrid = pManager->GetGrid();
-	pGrid->RemoveAllObjects();
 	int nLadders, nSnakes, nCards, n1, n2, n3, n4;
 	bool c10 = 1, c11 = 1, c12 = 1, c13 = 1;
 	ReadActionParameters();
@@ -45,6 +44,7 @@ void OpenGridAction::Execute()
 	file.open(FileName);
 	if(file.is_open())
 	{
+		pGrid->RemoveAllObjects();
 		GameObject* ptr;
 		file >> nLadders;
 		for (int i = 0; i < nLadders; i++) {

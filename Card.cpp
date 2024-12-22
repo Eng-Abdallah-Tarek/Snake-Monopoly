@@ -10,6 +10,8 @@ void Card::Increment()
 {
 	count++;
 }
+
+
 bool Card::SetCardNumber(int cnum)
 {
 	if (cnum > 0 && cnum < 14)
