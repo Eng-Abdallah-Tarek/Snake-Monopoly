@@ -44,7 +44,6 @@ bool CardTen::ReadCardParameters(Grid* pGrid)
 	{
 		Output* pOut = pGrid->GetOutput();
 		Input* pIn = pGrid->GetInput();
-		HaveNotReadPars = 0;
 		pOut->PrintMessage("Card 10: Enter the station's price: ");
 		int temp = pIn->GetInteger(pOut);
 		if (temp < 0) {
@@ -61,6 +60,7 @@ bool CardTen::ReadCardParameters(Grid* pGrid)
 		pOut->ClearStatusBar();
 		Fees = temp;
 		return 1;
+		HaveNotReadPars = 0;
 	}
 return 1;
 }
