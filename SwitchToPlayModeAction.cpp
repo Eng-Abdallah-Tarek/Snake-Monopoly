@@ -32,6 +32,7 @@ void SwitchToPlayModeAction::Execute()
 		pGrid->AdvanceCurrentPlayer();
 	}
 	pGrid->SetCurrentPlayer(0);
+	pGrid->SetEndGame(0);
 	CardTen::RemoveOwner();
 	CardEleven::RemoveOwner();
 	CardTwelve::RemoveOwner();
