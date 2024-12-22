@@ -6,6 +6,10 @@ Card::Card(const CellPosition & pos) : GameObject(pos), cardNumber(-1) // sets t
 	count++;
 }
 
+void Card::Increment() 
+{
+	count++;
+}
 bool Card::SetCardNumber(int cnum)
 {
 	if (cnum > 0 && cnum < 14)

@@ -31,7 +31,7 @@ bool PasteCardAction::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
-	pOut->PrintMessage("Click on the cell that you want to paste to it.....");
+	pOut->PrintMessage("Click on the cell that you want to paste to.....");
 	CellPosition c1 = pIn->GetCellClicked();
 	if (!c1.IsValidCell())
 	{
@@ -118,6 +118,7 @@ void PasteCardAction::Execute()
 		}
 		pCard->change(cellpos);
 		pGrid->SetWithPos(cellpos, pCard);
+		Card::Increment();
 		
 	}
 	return;

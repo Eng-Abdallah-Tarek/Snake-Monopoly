@@ -81,8 +81,13 @@ void CardEleven::Apply(Grid* pGrid, Player* pPlayer)
 		string s = pIn->GetSrting(pOut);
 	again:
 		if (s == "Yes") {
-			Owner = pGrid->GetCurrentPlayer();
-			Owner->ChangeWallet(Price, 0);
+			Player* pPlayer = pGrid->GetCurrentPlayer();;
+			if (pPlayer->GetWallet() < Price)
+				pGrid->PrintErrorMessage("You don't have enough coins. Click to continue...");
+			else {
+				Owner = pPlayer;
+				pPlayer->ChangeWallet(Price, 0);
+			}
 		}
 		else if (s == "No") {
 			return;
