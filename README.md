@@ -5,6 +5,28 @@
 SnakeMonopoly is a C++ project that simulates a board game similar to Snakes and Ladders, with additional features such as cards, players, and a graphical user interface. The project is structured using Object-Oriented Programming (OOP) principles to ensure modularity, reusability, and maintainability.
 
 ---
+...
+
+## Project Assets
+
+All project-related images, including screenshots and UML diagrams, are stored in the [`assets/`](assets) directory:
+
+- **Screenshots:** Place gameplay or UI screenshots in [`assets/screenshots/`](assets/screenshots).
+- **UML Diagrams:** Place your UML class or sequence diagrams in [`assets/uml/`](assets/uml).
+
+### Example
+
+- [`assets/screenshots/main_menu.png`](assets/screenshots/main_menu.png) – Main menu screenshot
+- [`assets/uml/class_diagram.png`](assets/uml/class_diagram.png) – UML class diagram
+
+You can reference these images in the README like this:
+
+```markdown
+![Main Menu](assets/screenshots/main_menu.png)
+![Class Diagram](assets/uml/class_diagram.png)
+```
+
+---
 
 ## Project Structure
 
