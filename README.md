@@ -1,31 +1,44 @@
-# SnakeMonopoly
+# SnakeMonopoly 🐍🎲
 
 ## Project Overview
 
 SnakeMonopoly is a C++ project that simulates a board game similar to Snakes and Ladders, with additional features such as cards, players, and a graphical user interface. The project is structured using Object-Oriented Programming (OOP) principles to ensure modularity, reusability, and maintainability.
 
----
+## 📸 Game Screenshots
 
-...
+### Design Mode
 
-## Project Assets
+The design mode allows users to create and modify the game board by adding snakes, ladders, and cards.
 
-All project-related images, including screenshots and UML diagrams, are stored in the [`assets/`](assets) directory:
+![Design Mode](assets/screenshots/Design%20mode.png)
 
-- **Screenshots:** Place gameplay or UI screenshots in [`assets/screenshots/`](assets/screenshots).
-- **UML Diagrams:** Place your UML class or sequence diagrams in [`assets/uml/`](assets/uml).
+### Play Mode
 
-### Example
+The play mode is where players can actually play the game, rolling dice and moving around the board.
 
-- [`assets/screenshots/main_menu.png`](assets/screenshots/main_menu.png) – Main menu screenshot
-- [`assets/uml/class_diagram.png`](assets/uml/class_diagram.png) – UML class diagram
+![Play Mode](assets/screenshots/Play%20mode.png)
 
-You can reference these images in the README like this:
+## 📊 UML Class Diagram
 
-```markdown
-![Main Menu](assets/screenshots/main_menu.png)
-![Class Diagram](assets/uml/class_diagram.png)
-```
+The project architecture is documented through comprehensive UML diagrams showing the relationships between all classes:
+
+### Class Diagram Overview
+
+![UML Class Diagram](assets/uml/SnakeMonopolyClassDiagram.svg)
+
+**Available Formats:**
+
+- **SVG Format:** [`assets/uml/SnakeMonopolyClassDiagram.svg`](assets/uml/SnakeMonopolyClassDiagram.svg) - Scalable vector format
+- **PDF Format:** [`assets/uml/SnakeMonopolyClassDiagram.pdf`](assets/uml/SnakeMonopolyClassDiagram.pdf) - Print-ready format
+
+The UML diagram illustrates:
+
+- **Core Management Classes** (ApplicationManager, Grid)
+- **Game Objects Hierarchy** (GameObject, Card, Ladder, Snake)
+- **Card Types** (CardOne through CardThirteen)
+- **Game Elements** (Cell, Player, CellPosition)
+- **Actions System** (Command pattern implementation)
+- **User Interface** (Input/Output classes)
 
 ---
 

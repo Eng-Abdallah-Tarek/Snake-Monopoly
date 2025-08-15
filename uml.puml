@@ -1,29 +1,314 @@
-@startuml
-skinparam backgroundColor #F2F2F2
-skinparam sequence {
-  ArrowColor #333333
-  ActorBorderColor #333333
+@startuml SnakeMonopolyClassDiagram
+
+!theme vibrant
+skinparam backgroundColor #F8F9FA
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #2C3E50
+
+title **Snake Monopoly Game - Class Diagram**\n//A comprehensive board game with design and play modes//
+
+' Define color scheme for different packages
+skinparam package {
+    BackgroundColor #E8F4FD
+    BorderColor #3498DB
+    FontColor #2C3E50
 }
 
-class ApplicationManager {
-  + Manage Grid
-  + Update Cell States
+' Core Management Classes
+package "**Core Management**" #LightBlue {
+    class ApplicationManager {
+        - pGrid: Grid*
+        - pIn: Input*
+        - pOut: Output*
+        - UpdateCond: bool
+        + ApplicationManager()
+        + ~ApplicationManager()
+        + GetGrid(): Grid*
+        + SetUpdateCond(bool): void
+        + UpdateInterface(): void
+        + GetUserAction(): ActionType
+        + ExecuteAction(ActionType): void
+    }
+    
+    class Grid {
+        - pOut: Output*
+        - pIn: Input*
+        - CellList: Cell*[NumVerticalCells][NumHorizontalCells]
+        - PlayerList: Player*[MaxPlayerCount]
+        - currPlayerNumber: int
+        - Clipboard: Card*
+        - endGame: bool
+        + Grid(Input*, Output*)
+        + AddObjectToCell(GameObject*): bool
+        + RemoveObjectFromCell(CellPosition): bool
+        + UpdatePlayerCell(Player*, CellPosition): void
+        + GetCurrentPlayer(): Player*
+        + GetNextLadder(CellPosition): Ladder*
+        + GetNextSnake(CellPosition): Snake*
+        + UpdateInterface(): void
+        + SaveAll(ofstream&): void
+    }
 }
 
-class Grid {
-  + Contain Cells
-  + Update Cell Positions
+' Game Objects Package
+package "**Game Objects**" #LightGreen {
+    abstract class GameObject {
+        # position: CellPosition
+        + GameObject(CellPosition)
+        + GetPosition(): CellPosition
+        + {abstract} Draw(Output*): void
+        + {abstract} Apply(Grid*, Player*): void
+        + {abstract} Save(ofstream&): void
+        + IsOverlapping(GameObject*, Grid*): bool
+        + ~GameObject()
+    }
+    
+    class Card {
+        # cardNumber: int
+        # {static} count: int
+        + Card(CellPosition)
+        + SetCardNumber(int): bool
+        + GetCardNumber(): int
+        + Draw(Output*): void
+        + ReadCardParameters(Grid*): bool
+        + Apply(Grid*, Player*): void
+        + Save(ofstream&): void
+        + {static} getCount(): int
+    }
+    
+    class Ladder {
+        - endCellPos: CellPosition
+        - {static} count: int
+        + Ladder(CellPosition, CellPosition)
+        + Draw(Output*): void
+        + Apply(Grid*, Player*): void
+        + GetEndPosition(): CellPosition
+        + IsOverlapping(GameObject*, Grid*): bool
+        + Save(ofstream&): void
+        + {static} getCount(): int
+    }
+    
+    class Snake {
+        - endCellPos: CellPosition
+        - {static} count: int
+        + Snake(CellPosition, CellPosition)
+        + Draw(Output*): void
+        + Apply(Grid*, Player*): void
+        + GetEndPosition(): CellPosition
+        + IsOverlapping(GameObject*, Grid*): bool
+        + Save(ofstream&): void
+        + {static} getCount(): int
+    }
 }
 
-class Cell {
-  + Have State (Empty/Occupied)
-  + Have Position (x, y)
+' Card Types Package
+package "**Card Types**" #LightYellow {
+    class CardOne {
+        + CardOne(CellPosition)
+        + ReadCardParameters(Grid*): bool
+        + Apply(Grid*, Player*): void
+    }
+    
+    class CardTwo {
+        + CardTwo(CellPosition)
+        + ReadCardParameters(Grid*): bool
+        + Apply(Grid*, Player*): void
+    }
+    
+    class CardThree {
+        + CardThree(CellPosition)
+        + ReadCardParameters(Grid*): bool
+        + Apply(Grid*, Player*): void
+    }
+    
+    note right of CardOne : "Moves player to specific cell"
+    note right of CardTwo : "Moves player to next ladder"
+    note right of CardThree : "Moves player to next snake"
+    
+    class "CardFour..CardThirteen" as OtherCards {
+        + Various card implementations
+        + Each with unique effects
+    }
 }
 
-ApplicationManager "1" -- "1" Grid : Manages
-Grid "1" -- "*" Cell : Contains
-Cell "1" -- "1" ApplicationManager : Updates State
+' Game Elements Package
+package "**Game Elements**" #LightCoral {
+    class Cell {
+        - position: CellPosition
+        - pGameObject: GameObject*
+        + Cell(CellPosition)
+        + Cell(int, int)
+        + GetCellPosition(): CellPosition
+        + SetGameObject(GameObject*): bool
+        + GetGameObject(): GameObject*
+        + HasLadder(): Ladder*
+        + HasSnake(): Snake*
+        + HasCard(): Card*
+        + DrawCellOrCard(Output*): void
+        + DrawLadderOrSnake(Output*): void
+    }
+    
+    class Player {
+        - pCell: Cell*
+        - playerNum: int
+        - prevented: bool
+        - stepCount: int
+        - wallet: int
+        - justRolledDiceNum: int
+        - turnCount: int
+        + Player(Cell*, int)
+        + SetCell(Cell*): void
+        + GetCell(): Cell*
+        + SetWallet(int): void
+        + GetWallet(): int
+        + Move(Grid*, int): void
+        + Draw(Output*): void
+        + ClearDrawing(Output*): void
+        + AppendPlayerInfo(string&): void
+    }
+    
+    class CellPosition {
+        - vCell: int
+        - hCell: int
+        + CellPosition()
+        + CellPosition(int, int)
+        + CellPosition(int)
+        + SetVCell(int): bool
+        + SetHCell(int): bool
+        + VCell(): int
+        + HCell(): int
+        + IsValidCell(): bool
+        + GetCellNum(): int
+        + {static} GetCellNumFromPosition(CellPosition): int
+        + {static} GetCellPositionFromNum(int): CellPosition
+        + AddCellNum(int): CellPosition&
+    }
+}
 
-' note "ApplicationManager manages the Grid, which contains multiple Cells. Cells have a state (empty/occupied) and a position (x, y). ApplicationManager updates the state of Cells."
+' Actions Package
+package "**Actions System**" #Lavender {
+    abstract class Action {
+        # pManager: ApplicationManager*
+        + Action(ApplicationManager*)
+        + {abstract} ReadActionParameters(): bool
+        + {abstract} Execute(): void
+        + ~Action()
+    }
+    
+    class AddCardAction {
+        + AddCardAction(ApplicationManager*)
+        + ReadActionParameters(): bool
+        + Execute(): void
+    }
+    
+    class AddLadderAction {
+        + AddLadderAction(ApplicationManager*)
+        + ReadActionParameters(): bool
+        + Execute(): void
+    }
+    
+    class AddSnakeAction {
+        + AddSnakeAction(ApplicationManager*)
+        + ReadActionParameters(): bool
+        + Execute(): void
+    }
+    
+    class RollDiceAction {
+        + RollDiceAction(ApplicationManager*)
+        + ReadActionParameters(): bool
+        + Execute(): void
+    }
+    
+    class "Other Actions" as OtherActions {
+        + CopyCardAction
+        + CutCardAction
+        + PasteCardAction
+        + DeleteObjectAction
+        + SaveGridAction
+        + OpenGridAction
+        + NewGameAction
+        + SwitchToPlayModeAction
+        + SwitchToDesignModeAction
+    }
+}
+
+' UI Package
+package "**User Interface**" #LightPink {
+    class Input {
+        + GetPointClicked(): void
+        + GetKeyPressed(): char
+        + GetString(Output*): string
+        + GetInteger(Output*): int
+    }
+    
+    class Output {
+        + PrintMessage(string): void
+        + PrintPlayersInfo(string): void
+        + CreateDesignModeToolBar(): void
+        + CreatePlayModeToolBar(): void
+        + ClearStatusBar(): void
+        + ClearGridArea(): void
+        + DrawCell(CellPosition, int): void
+        + DrawPlayer(CellPosition, int, color): void
+        + DrawLadder(CellPosition, CellPosition): void
+        + DrawSnake(CellPosition, CellPosition): void
+        + DrawCard(CellPosition, int): void
+    }
+}
+
+' Relationships
+ApplicationManager ||--|| Grid : manages
+ApplicationManager ||--|| Input : uses
+ApplicationManager ||--|| Output : uses
+
+Grid ||--o{ Cell : contains
+Grid ||--o{ Player : manages
+Grid ||--o Card : clipboard
+
+Cell ||--o GameObject : contains
+Cell ||--|| CellPosition : positioned at
+
+GameObject <|-- Card : inherits
+GameObject <|-- Ladder : inherits  
+GameObject <|-- Snake : inherits
+
+Card <|-- CardOne : inherits
+Card <|-- CardTwo : inherits
+Card <|-- CardThree : inherits
+Card <|-- OtherCards : inherits
+
+Player ||--|| Cell : current position
+
+Action <|-- AddCardAction : inherits
+Action <|-- AddLadderAction : inherits
+Action <|-- AddSnakeAction : inherits
+Action <|-- RollDiceAction : inherits
+Action <|-- OtherActions : inherits
+
+Action ||--|| ApplicationManager : uses
+
+' Key relationships with labels
+GameObject ||--|| CellPosition : "positioned at"
+Player ||--|| Grid : "moves on"
+Card ||--|| Player : "affects"
+Ladder ||--|| Player : "moves up"
+Snake ||--|| Player : "moves down"
+
+' Notes explaining key concepts
+note top of ApplicationManager : **Main Controller**\nManages the entire game flow\nHandles user actions and updates
+note top of Grid : **Game Board**\nContains all cells and game objects\nManages players and game state
+note top of GameObject : **Abstract Base**\nAll game objects inherit from this\nProvides common interface
+note top of Action : **Command Pattern**\nEach user action is encapsulated\nAllows undo/redo functionality
+
+' Legend
+legend right
+    |= Color |= Component Type |
+    | <#LightBlue> | Core Management |
+    | <#LightGreen> | Game Objects |
+    | <#LightYellow> | Card Types |
+    | <#LightCoral> | Game Elements |
+    | <#Lavender> | Actions System |
+    | <#LightPink> | User Interface |
+endlegend
 
 @enduml
