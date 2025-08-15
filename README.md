@@ -40,7 +40,7 @@ The UML diagram illustrates:
 - **Actions System** (Command pattern implementation)
 - **User Interface** (Input/Output classes)
 
----
+
 
 ---
 
@@ -128,9 +128,9 @@ The UML diagram illustrates:
 
 ## Extending the Project
 
-To add some Features like poison, fire, ice effects.  
-Sounds for dice, snake, ladder can change the whole game
-
+Adding some Features like poison, fire, ice effects.  
+Sounds for dice, snake, ladder can change the whole game.  
+Making a Snake-Monopoly digital Game Guide.
 ---
 
 ## License
