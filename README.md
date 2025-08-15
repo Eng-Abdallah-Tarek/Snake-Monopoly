@@ -128,7 +128,7 @@ The UML diagram illustrates:
 
 ## Extending the Project
 
-To add some Features like poison, fire, ice effects.
+To add some Features like poison, fire, ice effects.  
 Sounds for dice, snake, ladder can change the whole game
 
 ---
