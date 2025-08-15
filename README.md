@@ -128,7 +128,8 @@ The UML diagram illustrates:
 
 ## Extending the Project
 
-To add new cards or game objects, simply derive a new class from `Card` or `GameObject` and implement the required virtual functions.
+To add some Features like poison, fire, ice effects.
+Sounds for dice, snake, ladder can change the whole game
 
 ---
 
