@@ -5,6 +5,7 @@
 SnakeMonopoly is a C++ project that simulates a board game similar to Snakes and Ladders, with additional features such as cards, players, and a graphical user interface. The project is structured using Object-Oriented Programming (OOP) principles to ensure modularity, reusability, and maintainability.
 
 ---
+
 ...
 
 ## Project Assets
@@ -28,35 +29,6 @@ You can reference these images in the README like this:
 
 ---
 
-## Project Structure
-
-```
-.
-├── ApplicationManager.h/.cpp
-├── Grid.h/.cpp
-├── Cell.h/.cpp
-├── CellPosition.h/.cpp
-├── GameObject.h/.cpp
-│   ├── Ladder.h/.cpp
-│   ├── Snake.h/.cpp
-│   └── Card.h/.cpp
-│       ├── CardOne.h/.cpp
-│       ├── CardTwo.h/.cpp
-│       └── ... (other card types)
-├── Player.h/.cpp
-├── Input.h/.cpp
-├── Output.h/.cpp
-├── DEFS.h
-├── UI_Info.h
-├── Main.cpp
-├── CMUgraphicsLib/
-│   ├── CMUgraphics.h/.cpp
-│   ├── windowinput.h/.cpp
-│   ├── mousequeue.h/.cpp
-│   └── ... (other graphics support files)
-└── ...
-```
-
 ---
 
 ## OOP Design and Hierarchy
@@ -78,13 +50,14 @@ You can reference these images in the README like this:
 ### 2. **Game Objects (Inheritance & Polymorphism)**
 
 - **`GameObject`** (Abstract Base Class)  
-  The base class for all objects that can be placed on the grid.  
+  The base class for all objects that can be placed on the grid.
+
   - **`Ladder`**  
     Represents a ladder object.
   - **`Snake`**  
     Represents a snake object.
   - **`Card`** (Abstract)  
-    Base class for all card types.  
+    Base class for all card types.
     - **`CardOne`, `CardTwo`, ...**  
       Derived classes for each specific card type, implementing their own behavior.
 

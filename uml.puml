@@ -1,0 +1,29 @@
+@startuml
+skinparam backgroundColor #F2F2F2
+skinparam sequence {
+  ArrowColor #333333
+  ActorBorderColor #333333
+}
+
+class ApplicationManager {
+  + Manage Grid
+  + Update Cell States
+}
+
+class Grid {
+  + Contain Cells
+  + Update Cell Positions
+}
+
+class Cell {
+  + Have State (Empty/Occupied)
+  + Have Position (x, y)
+}
+
+ApplicationManager "1" -- "1" Grid : Manages
+Grid "1" -- "*" Cell : Contains
+Cell "1" -- "1" ApplicationManager : Updates State
+
+' note "ApplicationManager manages the Grid, which contains multiple Cells. Cells have a state (empty/occupied) and a position (x, y). ApplicationManager updates the state of Cells."
+
+@enduml
